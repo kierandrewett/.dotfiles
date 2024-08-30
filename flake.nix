@@ -56,6 +56,6 @@
                 };
             };
 
-            packages = helper.forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
+            packages = helpers.forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
         };
 }
