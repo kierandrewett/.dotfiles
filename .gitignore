@@ -1,0 +1,4 @@
+# Ignore everything except for the encrypted secrets file
+# Just in case an unencrypted file slips through Git
+secrets/*
+!secrets/secrets.yaml
