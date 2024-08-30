@@ -4,6 +4,7 @@
     lib,
     outputs,
     pkgs,
+    platform,
     stateVersion,
     username,
     ...

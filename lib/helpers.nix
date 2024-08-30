@@ -12,6 +12,7 @@
         }:
         inputs.home-manager.lib.homeManagerConfiguration {
             pkgs = inputs.nixpkgs.legacyPackages.${platform};
+
             extraSpecialArgs = {
                 inherit inputs outputs username platform stateVersion;
             };
@@ -28,6 +29,8 @@
             platform ? "x86_64-linux",
         }:
         inputs.nixpkgs.lib.nixosSystem {
+            pkgs = inputs.nixpkgs.legacyPackages.${platform};
+
             specialArgs = {
                 inherit inputs outputs hostname platform desktop stateVersion;
             };
