@@ -55,5 +55,7 @@
                     desktop = "gnome";
                 };
             };
+
+            packages = helper.forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
         };
 }
