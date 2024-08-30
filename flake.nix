@@ -11,9 +11,6 @@
 
         # NixOS hardware support
         nixos-hardware.url = "github:NixOS/nixos-hardware";
-
-        # Secrets
-        secrets.url = "github:kierandrewett/system-secrets";
     };
 
     outputs =
