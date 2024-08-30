@@ -10,17 +10,15 @@
             username,
             platform ? "x86_64-linux",
         }:
-        {
-            inputs.home-manager.lib.homeManagerConfiguration {
-                pkgs = inputs.nixpkgs.legacyPackages.${platform};
-                extraSpecialArgs = {
-                    inherit inputs outputs username platform stateVersion;
-                };
-
-                modules = [
-                    ../home
-                ];
+        inputs.home-manager.lib.homeManagerConfiguration {
+            pkgs = inputs.nixpkgs.legacyPackages.${platform};
+            extraSpecialArgs = {
+                inherit inputs outputs username platform stateVersion;
             };
+
+            modules = [
+                ../home
+            ];
         };
 
     mkSystem =
@@ -29,16 +27,14 @@
             desktop,
             platform ? "x86_64-linux",
         }:
-        {
-            inputs.nixpkgs.lib.nixosSystem {
-                specialArgs = {
-                    inherit inputs outputs hostname platform desktop stateVersion;
-                };
-
-                modules = [
-                    ../sys
-                ];
+        inputs.nixpkgs.lib.nixosSystem {
+            specialArgs = {
+                inherit inputs outputs hostname platform desktop stateVersion;
             };
+
+            modules = [
+                ../sys
+            ];
         };
 
     forAllSystems = inputs.nixpkgs.lib.genAttrs [
