@@ -1,6 +1,7 @@
 {
     username,
     outputs,
+    platform,
     pkgs,
     ...
 }:
