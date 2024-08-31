@@ -14,6 +14,10 @@
 
         # SOPS secrets
         sops-nix.url = "github:Mic92/sops-nix";
+
+        # Disko
+        disko.url = "github:nix-community/disko";
+        disko.inputs.nixpkgs.follows = "nixpkgs";
     };
 
     outputs =

@@ -1,10 +1,10 @@
-# Lenovo IdeaPad Slim 5
+# Test VM
 
 { inputs, ... }:
 {
     imports = [
         # Hardware
-        inputs.nixos-hardware.nixosModules.lenovo-ideapad-slim-5
+        inputs.nixos-hardware.nixosModules.common-pc
         ./disks.nix
 
         # Apps
