@@ -26,7 +26,7 @@
         {
             hostname,
             desktop,
-            username
+            username,
             platform ? "x86_64-linux",
         }:
         inputs.nixpkgs.lib.nixosSystem {
