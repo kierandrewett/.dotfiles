@@ -25,5 +25,5 @@
     users.users.${username}.extraGroups = [
         "rtkit"
         "audio"
-    ]
+    ];
 }

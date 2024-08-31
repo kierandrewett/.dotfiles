@@ -13,5 +13,5 @@ _:
         plymouth = {
             enable = true;
         };
-    }
+    };
 }

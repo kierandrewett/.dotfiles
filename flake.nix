@@ -62,8 +62,8 @@
                     desktop = "gnome";
                 };
                 # Test VM
-                test = helpers.mkSystem {
-                    hostname = "test";
+                testvm = helpers.mkSystem {
+                    hostname = "testvm";
                     username = "kieran";
                     desktop = "gnome";
                 };
