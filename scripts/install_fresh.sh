@@ -7,7 +7,7 @@ SYS_INSTALL_LUKS_KEY=/tmp/luks.key
 
 set -e
 
-if [ "$EUID" -ne 0 ]
+if [ "$EUID" -ne 0 ]; then
     printf "$SYS_INSTALL_ERROR_HEADER"
     echo "The installer script will need to be ran as root."
     exit 1
