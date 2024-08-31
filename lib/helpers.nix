@@ -26,13 +26,14 @@
         {
             hostname,
             desktop,
+            username
             platform ? "x86_64-linux",
         }:
         inputs.nixpkgs.lib.nixosSystem {
             pkgs = inputs.nixpkgs.legacyPackages.${platform};
 
             specialArgs = {
-                inherit inputs outputs hostname platform desktop stateVersion;
+                inherit inputs outputs username hostname platform desktop stateVersion;
             };
 
             modules = [
