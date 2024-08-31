@@ -3,8 +3,8 @@
     ...
 }:
 let
-    let ssid = config.sops.secrets."networks/vm/ssid";
-    let psk = config.sops.secrets."networks/vm/psk";
+    ssid = config.sops.secrets."networks/vm/ssid";
+    psk = config.sops.secrets."networks/vm/psk";
 in
 {
     networks.wireless.networks."${ssid}" = {
