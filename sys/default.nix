@@ -5,6 +5,8 @@
     platform,
     desktop,
     stateVersion ? null,
+    lib,
+    config,
     ...
 }:
 {
@@ -38,6 +40,15 @@
 
             "networks/vm/ssid" = {};
             "networks/vm/psk" = {};
+        };
+
+        templates = {
+            "wifi/vm.env" = {
+                content = ''
+                    ssid = "${config.sops.placeholder."networks/vm/ssid"}"
+                    psk = "${config.sops.placeholder."networks/vm/psk"}"
+                '';
+            };
         };
     };
 
