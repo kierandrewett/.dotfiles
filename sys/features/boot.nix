@@ -1,11 +1,14 @@
-_:
+{
+    lib,
+    ...
+}:
 {
     boot = {
         kernelParams = [
             "quiet"
         ];
 
-        consoleLogLevel = 0;
+        consoleLogLevel = lib.mkForce 0;
 
         # Hides the bootloader, press any key on boot to show
         loader.timeout = 0;
