@@ -15,15 +15,13 @@
         evince # Document viewer
     ]);
 
-    # Gnome applications
     environment.systemPackages = with pkgs; [
+        # Gnome applications
         gnome-extension-manager
         gnome.gnome-tweaks
-    ];
 
-    # Gnome extensions
-    environment.systemPackages = with pkgs.gnomeExtensions; [
-        dash-to-dock
+        # Gnome extensions
+        (gnomeExtensions.dash-to-dock)
     ];
 
     services.xserver = {
