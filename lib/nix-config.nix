@@ -3,19 +3,15 @@
     outputs,
     platform,
     pkgs,
+    lib,
     ...
 }:
 {
     nixpkgs = {
         overlays = [];
-        hostPlatform = platform;
-        config = {
-            allowUnfree = true;
-        };
     };
 
     nix = {
-        package = pkgs.nix;
         settings = {
             experimental-features = "nix-command flakes";
             flake-registry = "";
@@ -24,4 +20,6 @@
             warn-dirty = false;
         };
     };
+
+    nixpkgs.hostPlatform = lib.mkDefault "${platform}";
 }
