@@ -1,6 +1,6 @@
 _:
 {
-    import = [
+    imports = [
         ./browsers
         ./chat
         ./coding

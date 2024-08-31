@@ -59,7 +59,7 @@ _:
                                     "/swap" = {
                                         mountpoint = "/.swapvol";
                                         # 1/4 of RAM size
-                                        swap.swapfile.size = "8GB";
+                                        swap.swapfile.size = "8G";
                                     };
                                 }
                             };

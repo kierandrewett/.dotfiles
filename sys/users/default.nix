@@ -22,7 +22,6 @@
         isNormalUser = true;
 
         packages = [ pkgs.home-manager ];
-        shell = pkgs.zsh;
 
         hashedPasswordFile = if builtins.pathExists config.sops.secrets."users/${username}/passwd".path
                     then config.sops.secrets."users/${username}/passwd".path

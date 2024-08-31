@@ -6,5 +6,6 @@ _:
         ./boot.nix
         ./locale.nix
         ./audio.nix
+        ./shell.nix
     ];
 }

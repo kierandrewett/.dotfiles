@@ -2,6 +2,7 @@
     lib,
     config,
     username,
+    pkgs,
     ...
 }:
 {
@@ -14,11 +15,6 @@
         alsa.support32Bit = lib.mkForce config.hardware.opengl.driSupport32Bit;
 
         pulse.enable = true;
-    };
-
-    services.easyeffects = {
-        enable = true;
-        preset = "Default";
     };
 
     # Add our user to the rtkit and audio groups
