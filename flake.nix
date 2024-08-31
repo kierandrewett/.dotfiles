@@ -11,6 +11,9 @@
 
         # NixOS hardware support
         nixos-hardware.url = "github:NixOS/nixos-hardware";
+
+        # SOPS secrets
+        sops-nix.url = "github:Mic92/sops-nix";
     };
 
     outputs =
