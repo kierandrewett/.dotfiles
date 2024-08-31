@@ -12,5 +12,5 @@ in
 
         # Always attempt to use this network
         priority = 1000;
-    }
+    };
 }
