@@ -61,6 +61,12 @@
                     username = "kieran";
                     desktop = "gnome";
                 };
+                # Test VM
+                test = helpers.mkSystem {
+                    hostname = "test";
+                    username = "kieran";
+                    desktop = "gnome";
+                };
             };
 
             packages = helpers.forAllSystems (system: nixpkgs.legacyPackages.${system});
