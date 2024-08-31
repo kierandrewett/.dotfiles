@@ -29,14 +29,14 @@
         defaultSopsFile = ../secrets/secrets.yaml;
 
         secrets = {
-            "luks/passphrase": {},
+            "luks/passphrase" = {};
 
-            "users/${username}/passwd": {
+            "users/${username}/passwd" = {
                 neededForUsers = true;
-            },
+            };
 
-            "networks/vm/ssid": {},
-            "networks/vm/psk": {}
+            "networks/vm/ssid" = {};
+            "networks/vm/psk" = {};
         };
     };
 
