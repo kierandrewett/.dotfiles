@@ -9,5 +9,5 @@ _:
         ./media
         ./productivity
         ./utilities
-    ]
+    ];
 }
