@@ -26,8 +26,8 @@ _:
                                 };
                             };
                         };
-                    }
-                }
+                    };
+                };
             };
             # Crucial P2 500GB M.2 NVMe (CT500P2SSD8)
             nvme1 = {
@@ -61,7 +61,7 @@ _:
                                         # 1/4 of RAM size
                                         swap.swapfile.size = "8G";
                                     };
-                                }
+                                };
                             };
                         };
                     };
