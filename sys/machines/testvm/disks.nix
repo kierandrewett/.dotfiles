@@ -3,9 +3,9 @@ _:
     disko.devices = {
         disk = {
             # QEMU Virtual Disk
-            vda = {
+            sda = {
                 type = "disk";
-                device = "/dev/vda";
+                device = "/dev/sda";
                 content = {
                     type = "gpt";
                     partitions = {
