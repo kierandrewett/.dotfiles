@@ -8,8 +8,6 @@
         # pkgs.*
         gnome-tour
         gnome-connections
-    ]) ++ (with pkgs.gnome; [
-        # pkgs.gnome.*
         epiphany # Web
         geary # Email reader
         evince # Document viewer
@@ -18,7 +16,7 @@
     environment.systemPackages = with pkgs; [
         # Gnome applications
         gnome-extension-manager
-        gnome.gnome-tweaks
+        gnome-tweaks
 
         # Gnome extensions
         (gnomeExtensions.dash-to-dock)
