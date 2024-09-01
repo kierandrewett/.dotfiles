@@ -14,7 +14,7 @@
         enable = true;
 
         alsa.enable = true;
-        alsa.support32Bit = lib.mkForce config.hardware.opengl.driSupport32Bit;
+        alsa.support32Bit = lib.mkForce config.hardware.graphics.enable32Bit;
 
         pulse.enable = true;
     };

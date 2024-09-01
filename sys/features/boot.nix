@@ -17,7 +17,7 @@
         loader = {
             # Continue booting after 5s
             timeout = 5;
-            
+
             # Allow the installer to modify /boot/efi variables
             efi = {
                 canTouchEfiVariables = true;
