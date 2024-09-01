@@ -16,9 +16,6 @@ _:
                                 type = "filesystem";
                                 format = "vfat";
                                 mountpoint = "/boot";
-                                mountOptions = [
-                                    "defaults"
-                                ];
                             };
                         };
                         root = {
