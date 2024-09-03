@@ -28,6 +28,8 @@
             # Allow the installer to modify /boot/efi variables
             efi = {
                 canTouchEfiVariables = true;
+
+                efiSysMountPoint = "/boot/efi";
             };
 
             # Use grub as the boot loader
