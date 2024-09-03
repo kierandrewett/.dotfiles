@@ -34,6 +34,10 @@
             grub = {
                 enable = true;
 
+                # Enable EFI support
+                efiSupport = true;
+                efiInstallAsRemovable = true;
+
                 # Max number of NixOS configurations allowed
                 # to be displayed in the boot loader.
                 configurationLimit = 10;
