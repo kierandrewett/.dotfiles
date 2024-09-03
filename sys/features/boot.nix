@@ -1,9 +1,16 @@
 {
     lib,
+    pkgs,
     ...
 }:
 {
+    environment.systemPackages = with pkgs; [
+        plymouth
+    ];
+
     boot = {
+        initrd.systemd.enable = true;
+
         kernelParams = [
             "quiet"
         ];
@@ -23,8 +30,8 @@
                 canTouchEfiVariables = true;
             };
 
-            # Use systemd-boot as the boot loader
-            systemd-boot = {
+            # Use grub as the boot loader
+            grub = {
                 enable = true;
 
                 # Max number of NixOS configurations allowed
