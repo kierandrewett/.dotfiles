@@ -7,6 +7,7 @@
     stateVersion ? null,
     lib,
     config,
+    pkgs,
     ...
 }:
 {
@@ -21,6 +22,12 @@
         ./desktop/${desktop}
         ./features
         ./users
+    ];
+
+    # These packages are absolutely essential
+    # and will be required on all machines!
+    environment.systemPackages = with pkgs; [
+        pkgs.git
     ];
 
     sops = {
