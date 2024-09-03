@@ -16,7 +16,7 @@ _:
                                 name = "crypted";
                                 settings = {
                                     allowDiscards = true;
-                                    keyFile = "/tmp/luks.key";
+                                    passwordFile = "/tmp/luks.key";
                                 };
                                 content = {
                                     type = "btrfs";
