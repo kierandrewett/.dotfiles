@@ -23,8 +23,7 @@
 
         packages = [ pkgs.home-manager ];
 
-        hashedPasswordFile = if builtins.pathExists config.sops.secrets."users/${username}/passwd".path
-                    then config.sops.secrets."users/${username}/passwd".path
-                    else null;
+        # mkpasswd -m sha-512
+        hashedPassword = "$6$h0qd3j1d1ENjklBD$De5UJ9CfcTVdEnpXP5QbmZQjS8qE4.ZyxKZKnl8SLUHV/44bV5WfEi8kG/Yry9IS5QwJGauKPBG3TQGomxKw/1";
     };
 }
