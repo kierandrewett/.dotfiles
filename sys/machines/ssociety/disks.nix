@@ -5,7 +5,7 @@ _:
             # WD PC SN740 1TB M.2 NVMe
             nvme0 = {
                 type = "disk";
-                device = "/dev/disk/by-id/nvme-WD_PC_SN740_SDDPMQD-1T00-1101-232961802977";
+                device = "/dev/disk/by-id/nvme-WD_PC_SN740_SDDPMQD-1T00-1101_232961802977";
                 content = {
                     type = "gpt";
                     partitions = {
