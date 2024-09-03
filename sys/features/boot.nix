@@ -29,7 +29,7 @@
             efi = {
                 canTouchEfiVariables = true;
 
-                efiSysMountPoint = "/boot/efi";
+                efiSysMountPoint = "/boot";
             };
 
             # Use grub as the boot loader
