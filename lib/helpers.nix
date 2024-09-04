@@ -27,6 +27,7 @@
                     home-manager.useGlobalPkgs = true;
                     home-manager.useUserPackages = true;
                     home-manager.users.${username}.imports = [../home];
+                    home-manager.extraSpecialArgs.inputs = inputs;
                 }
 
                 ../sys
