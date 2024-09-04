@@ -15,8 +15,6 @@
         inputs.sops-nix.nixosModules.sops
         inputs.disko.nixosModules.disko
 
-        ../lib/nix-config.nix
-
         ./machines/${hostname}
         ./desktop/${desktop}
         ./features

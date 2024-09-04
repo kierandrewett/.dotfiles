@@ -24,6 +24,8 @@
             };
 
             modules = [
+                ../lib/nix-config.nix
+
                 inputs.home-manager.nixosModules.home-manager
                 {
                     home-manager.useGlobalPkgs = true;
