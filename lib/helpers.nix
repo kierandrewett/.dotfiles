@@ -13,6 +13,8 @@
             platform ? "x86_64-linux",
         }:
         inputs.nixpkgs.lib.nixosSystem {
+            system = platform;
+
             specialArgs = {
                 inherit inputs outputs username hostname platform desktop stateVersion;
             };
@@ -24,6 +26,7 @@
                 {
                     home-manager.useGlobalPkgs = true;
                     home-manager.useUserPackages = true;
+                    home-manager.users.${username} = import ../home;
                 }
 
                 ../sys
