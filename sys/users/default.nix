@@ -12,6 +12,8 @@
 
     environment.localBinInPath = true;
 
+    sops.secrets."users/${username}/passwd".neededForUsers = true;
+
     users.users.${username} = {
         extraGroups = [
             "users"
@@ -23,7 +25,7 @@
 
         packages = [ pkgs.home-manager ];
 
-        sops.secrets."users/${username}/passwd".neededForUsers = true;
+
         hashedPasswordFile = config.sops.secrets."users/${username}/passwd".path;
     };
 }
