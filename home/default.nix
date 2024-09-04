@@ -28,10 +28,6 @@
         home-manager.enable = true;
     };
 
-    packages = with pkgs; [
-        fastfetch
-    ];
-
     fonts.fontconfig.enable = true;
 
     xdg.enable = true;

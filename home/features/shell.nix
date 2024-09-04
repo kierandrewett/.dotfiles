@@ -4,6 +4,10 @@
     ...
 }:
 {
+    home.packages = with pkgs; [
+        fastfetch
+    ];
+
     programs.zsh = {
         enable = true;
         enableCompletion = true;
