@@ -35,7 +35,14 @@
 
         defaultSopsFile = ../secrets/secrets.yaml;
 
-        secrets = {};
+        secrets = {
+            "luks/passphrase" = {};
+
+            "users/${username}/passwd" = {};
+
+            "networks/vm/ssid" = {};
+            "networks/vm/psk" = {};
+        };
 
         templates = {
             "wifi/vm.env" = {
