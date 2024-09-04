@@ -15,6 +15,8 @@
             "quiet"
         ];
 
+        kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
+
         consoleLogLevel = lib.mkForce 0;
 
         plymouth = {
