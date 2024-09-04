@@ -12,12 +12,6 @@
             username,
             platform ? "x86_64-linux",
         }:
-        let
-            pkgs = import inputs.nixpkgs {
-                system = platform;
-                config.allowUnfree = true;
-            };
-        in
         inputs.nixpkgs.lib.nixosSystem {
             specialArgs = {
                 inherit inputs outputs username hostname platform desktop stateVersion;
