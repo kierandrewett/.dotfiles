@@ -4,7 +4,6 @@
     ...
 }:
 {
-    imports = let
-        userPath = ./. + "/${username}";
-    in lib.optional (builtins.pathExists userPath) [userPath];
+    imports = []
+        ++ lib.optional (builtins.pathExists (./. + "/${username}")) ./${username};
 }
