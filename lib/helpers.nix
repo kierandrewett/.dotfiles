@@ -27,7 +27,9 @@
                     home-manager.useGlobalPkgs = true;
                     home-manager.useUserPackages = true;
                     home-manager.users.${username}.imports = [../home];
-                    home-manager.extraSpecialArgs.inputs = inputs;
+                    home-manager.extraSpecialArgs = {
+                        inherit inputs outputs username hostname platform desktop stateVersion;
+                    };
                 }
 
                 ../sys
