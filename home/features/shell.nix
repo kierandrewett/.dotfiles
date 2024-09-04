@@ -4,19 +4,23 @@
     ...
 }:
 {
-    home.packages = with pkgs; [
-        fastfetch
-    ];
+    home = {
+        packages = with pkgs; [
+            fastfetch
+        ];
+
+        # These are not user shell specific!
+        # Make sure they're compatible with all shells.
+        shellAliases = {
+            neofetch = "fastfetch"; # Old habits die hard
+        };
+    };
 
     programs.zsh = {
         enable = true;
         enableCompletion = true;
-        autosuggestions.enable = true;
+        autosuggestion.enable = true;
         syntaxHighlighting.enable = true;
-
-        shellAliases = {
-            neofetch = "fastfetch"; # Old habits die hard
-        };
 
         history = {
             size = 10000;
