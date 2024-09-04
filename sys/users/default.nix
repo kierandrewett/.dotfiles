@@ -14,6 +14,7 @@
 
     sops.secrets."users/${username}/passwd".neededForUsers = true;
 
+    users.defaultUserShell = pkgs.zsh;
     users.users.${username} = {
         extraGroups = [
             "users"
