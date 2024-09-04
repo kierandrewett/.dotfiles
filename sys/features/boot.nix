@@ -28,22 +28,15 @@
             # Allow the installer to modify /boot/efi variables
             efi = {
                 canTouchEfiVariables = true;
-
-                efiSysMountPoint = "/boot";
             };
 
-            # Use grub as the boot loader
-            grub = {
+            # Use systemd-boot as the boot loader
+            systemd-boot = {
                 enable = true;
-
-                # Enable EFI support
-                efiSupport = true;
 
                 # Max number of NixOS configurations allowed
                 # to be displayed in the boot loader.
                 configurationLimit = 10;
-
-                device = "nodev";
             };
         };
     };
