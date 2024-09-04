@@ -1,27 +1,17 @@
 {
     inputs,
     outputs,
+    system,
     stateVersion,
     ...
 }:
+let
+    pkgs = import inputs.nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+    };
+in
 {
-    mkHome =
-        {
-            username,
-            platform ? "x86_64-linux",
-        }:
-        inputs.home-manager.lib.homeManagerConfiguration {
-            pkgs = inputs.nixpkgs.legacyPackages.${platform};
-
-            extraSpecialArgs = {
-                inherit inputs outputs username platform stateVersion;
-            };
-
-            modules = [
-                ../home
-            ];
-        };
-
     mkSystem =
         {
             hostname,
@@ -30,13 +20,18 @@
             platform ? "x86_64-linux",
         }:
         inputs.nixpkgs.lib.nixosSystem {
-            pkgs = inputs.nixpkgs.legacyPackages.${platform};
-
             specialArgs = {
                 inherit inputs outputs username hostname platform desktop stateVersion;
             };
 
             modules = [
+                inputs.home-manager.nixosModules.home-manager
+                {
+                    home-manager.useGlobalPkgs = true;
+                    home-manager.useUserPackages = true;
+                    home-manager.users.${username} = import ../home;
+                }
+
                 ../sys
             ];
         };

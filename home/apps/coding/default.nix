@@ -2,5 +2,5 @@ _:
 {
     imports = [
         ./git.nix
-    ]
+    ];
 }

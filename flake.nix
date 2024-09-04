@@ -24,6 +24,7 @@
         {
             self,
             nixpkgs,
+            system,
             ...
         }@inputs:
         let
@@ -32,22 +33,9 @@
             # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
             stateVersion = "24.05";
 
-            helpers = import ./lib/helpers.nix { inherit inputs outputs stateVersion; };
+            helpers = import ./lib/helpers.nix { inherit inputs outputs system stateVersion; };
         in
         {
-            homeConfigurations = {
-                # Main PC
-                "kieran@fsociety" = helpers.mkHome {
-                    hostname = "fsociety";
-                    username = "kieran";
-                };
-                # Lenovo IdeaPad Slim 5
-                "kieran@ssociety" = helpers.mkHome {
-                    hostname = "ssociety";
-                    username = "kieran";
-                };
-            };
-
             nixosConfigurations = {
                 # Main PC
                 fsociety = helpers.mkSystem {
