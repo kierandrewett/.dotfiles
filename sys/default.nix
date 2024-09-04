@@ -35,6 +35,8 @@
 
         defaultSopsFile = ../secrets/secrets.yaml;
 
+        secrets = {};
+
         templates = {
             "wifi/vm.env" = {
                 content = ''

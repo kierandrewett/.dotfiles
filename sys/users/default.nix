@@ -25,7 +25,6 @@
 
         packages = [ pkgs.home-manager ];
 
-
         hashedPasswordFile = config.sops.secrets."users/${username}/passwd".path;
     };
 }
