@@ -19,11 +19,13 @@ with pkgs.gnomeExtensions; {
         "org/gnome/shell/extensions/dash-to-dock" = lib.mkIf (lib.elem dash-to-dock extensions) {
             autohide = false;
             scroll-action = "cycle-windows";
+            dock-fixed = true;
             intellihide = false;
             show-trash = false;
             show-mounts = false;
+            require-pressure-to-show = false;
             running-indicator-style = "DOTS";
-            dash-max-icon-size = 48;
+            dash-max-icon-size = 64;
         };
     };
 }
