@@ -23,10 +23,10 @@ _:
                         };
                         luks = {
                             size = "100%";
+                            label = "";
                             content = {
                                 type = "luks";
                                 name = "crypted";
-                                label = "";
                                 passwordFile = "/tmp/luks.key";
                                 settings = {
                                     allowDiscards = true;
