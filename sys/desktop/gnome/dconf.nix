@@ -20,6 +20,8 @@
                 "org/gnome/desktop/interface" = {
                     # Middle click paste
                     gtk-enable-primary-paste = false;
+
+                    clock-show-weekday = true;
                 };
 
                 "org/gnome/desktop/a11y" = {
@@ -37,6 +39,10 @@
                 "org/gnome/mutter" = {
                     edge-tiling = true;
                     dynamic-workspaces = true;
+                };
+
+                "org/gnome/system/location" = {
+                    enabled = true;
                 };
             };
         }
