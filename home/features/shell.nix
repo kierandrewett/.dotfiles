@@ -19,7 +19,7 @@
     programs.zsh = {
         enable = true;
 
-        loginExtra = "fastfetch";
+        initExtra = "fastfetch";
 
         history = {
             size = 10000;
