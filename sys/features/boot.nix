@@ -25,7 +25,7 @@
 
         loader = {
             # Continue booting after 5s
-            timeout = 5;
+            timeout = 2;
 
             # Allow the installer to modify /boot/efi variables
             efi = {
