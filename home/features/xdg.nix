@@ -12,7 +12,7 @@
             ];
         };
 
-        mime.defaultApplications = {
+        mimeApps.defaultApplications = {
             # Internet Browsers
             "text/html" = "firefox.desktop";
             "x-scheme-handler/http" = "firefox.desktop";
