@@ -5,7 +5,7 @@
     ...
 }:
 {
-    environment.systemPackages = with pkgs; [
+    home.packages = with pkgs; [
         microsoft-edge
         vivaldi
         tor-browser
