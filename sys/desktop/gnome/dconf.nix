@@ -22,6 +22,10 @@
                     gtk-enable-primary-paste = false;
                 };
 
+                "org/gnome/desktop/a11y" = {
+                    always-show-universal-access-status = true;
+                };
+
                 "org/gnome/desktop/wm/preferences" = {
                     button-layout = "icon:minimize,maximize,close";
                 };
