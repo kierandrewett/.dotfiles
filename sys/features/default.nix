@@ -2,6 +2,7 @@ _:
 {
     imports = [
         ./networking
+        ./video
 
         ./boot.nix
         ./locale.nix

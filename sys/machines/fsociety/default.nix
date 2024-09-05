@@ -10,7 +10,6 @@
         inputs.nixos-hardware.nixosModules.common-pc-ssd
 
         ./disks.nix
-        ../../features/video/amd
 
         # Apps
         ../../apps/all.nix
