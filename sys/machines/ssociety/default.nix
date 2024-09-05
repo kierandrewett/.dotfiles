@@ -8,4 +8,8 @@
 
         ./disks.nix
     ];
+
+    boot.kernelModules = [
+        "mt7921e" # Wi-Fi
+    ];
 }
