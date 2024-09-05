@@ -3,6 +3,10 @@
     ...
 }:
 {
+    imports = [
+        ./dconf.nix
+    ];
+
     # Exclude certain packages
     environment.gnome.excludePackages = (with pkgs; [
         # pkgs.*
@@ -37,14 +41,5 @@
         excludePackages = with pkgs; [
             xterm
         ];
-    };
-
-    dconf.settings."org/gnome/desktop/background" = {
-        picture-uri = "${pkgs.gnome-backgrounds}/share/backgrounds/gnome/blobs-l.svg";
-        picture-uri-dark = "${pkgs.gnome-backgrounds}/share/backgrounds/gnome/blobs-d.svg";
-    };
-
-    dconf.settings."org/gnome/desktop/screensaver" = {
-        picture-uri = "${pkgs.gnome-backgrounds}/share/backgrounds/gnome/blobs-l.svg";
     };
 }
