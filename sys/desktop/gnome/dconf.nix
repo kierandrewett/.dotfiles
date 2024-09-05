@@ -29,6 +29,11 @@
                 "org/gnome/desktop/wm/keybindings" = {
                     show-screenshot-ui = "['<Alt>s']";
                 };
+
+                "org/gnome/mutter" = {
+                    edge-tiling = true;
+                    dynamic-workspaces = true;
+                };
             };
         }
     ];
