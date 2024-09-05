@@ -5,7 +5,8 @@
 }:
 let
     zsh-headline = pkgs.fetchurl {
-        url = "https://raw.githubusercontent.com/moarram/headline/master/headline.zsh-theme";
+        url = "https://raw.githubusercontent.com/Moarram/headline/c12368adfbbaa35e7f21e743d34b59f8db263a95/headline.zsh-theme";
+        sha256 = "0w394y3rmj60gm5fvi829q9lp16dhr8fp5n62y5b618zz2qf18lr";
     };
 in
 {
