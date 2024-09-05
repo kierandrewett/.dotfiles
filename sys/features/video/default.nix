@@ -7,8 +7,8 @@
     imports = []
         ++ lib.optional (builtins.pathExists (./. + "/${graphics}.nix")) ./${graphics}.nix;
 
-    hardware.opengl = {
+    hardware.graphics = {
         enable = true;
-        driSupport32Bit = true;
+        enable32Bit = true;
     };
 }
