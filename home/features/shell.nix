@@ -19,6 +19,7 @@ in
         # Make sure they're compatible with all shells.
         shellAliases = {
             neofetch = "fastfetch"; # Old habits die hard
+            sync = "(cd /etc/nixos && sudo git pull && sudo nixos-rebuild switch)";
         };
     };
 
