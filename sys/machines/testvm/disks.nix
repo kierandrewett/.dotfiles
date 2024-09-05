@@ -11,7 +11,6 @@ _:
                     partitions = {
                         luks = {
                             size = "100%";
-                            label = "";
                             content = {
                                 type = "luks";
                                 name = "crypted";
