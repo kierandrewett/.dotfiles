@@ -7,6 +7,7 @@
     platform,
     stateVersion,
     username,
+    desktop,
     ...
 }:
 {
@@ -14,6 +15,7 @@
         inputs.sops-nix.homeManagerModules.sops
 
         ./apps/all.nix
+        ./desktop
         ./features
         ./users
     ];
