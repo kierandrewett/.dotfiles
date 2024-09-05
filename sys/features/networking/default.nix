@@ -1,6 +1,7 @@
 {
     hostname,
     username,
+    lib,
     ...
 }:
 {
@@ -11,7 +12,7 @@
     networking = {
         hostName = hostname;
 
-        useDHCP = true;
+        useDHCP = lib.mkForce true;
 
         nameservers = [
             "1.1.1.1"
