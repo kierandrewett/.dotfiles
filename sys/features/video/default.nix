@@ -1,6 +1,7 @@
 {
     graphics,
     lib,
+    username,
     ...
 }:
 {
@@ -8,7 +9,11 @@
         ++ lib.optional (builtins.pathExists (./. + "/${graphics}.nix")) ./${graphics}.nix;
 
     hardware.graphics = {
-        enable = true;
-        enable32Bit = true;
+        enable = lib.mkForce true;
+        enable32Bit = lib.mkForce true;
     };
+
+    users.users.${username}.extraGroups = [
+        "video"
+    ];
 }
