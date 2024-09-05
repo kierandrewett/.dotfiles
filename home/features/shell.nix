@@ -42,7 +42,6 @@ in
             plugins = [
                 "git"
             ];
-            theme = "custom";
         };
     };
 }
