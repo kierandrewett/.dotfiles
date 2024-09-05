@@ -41,12 +41,14 @@
                     hostname = "fsociety";
                     username = "kieran";
                     desktop = "gnome";
+                    graphics = "amd";
                 };
                 # Lenovo IdeaPad Slim 5
                 ssociety = helpers.mkSystem {
                     hostname = "ssociety";
                     username = "kieran";
                     desktop = "gnome";
+                    graphics = "amd";
                 };
                 # Test VM
                 testvm = helpers.mkSystem {
