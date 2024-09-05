@@ -1,5 +1,6 @@
 {
     hostname,
+    username,
     ...
 }:
 {
@@ -19,4 +20,8 @@
             enable = true;
         };
     };
+
+    users.users.${username}.extraGroups = [
+        "networkmanager"
+    ];
 }
