@@ -8,12 +8,12 @@
         {
             settings = {
                 "org/gnome/desktop/background" = {
-                    picture-uri = "${pkgs.gnome-backgrounds}/share/backgrounds/gnome/blobs-l.svg";
-                    picture-uri-dark = "${pkgs.gnome-backgrounds}/share/backgrounds/gnome/blobs-d.svg";
+                    picture-uri = "${pkgs.gnome-backgrounds}/share/backgrounds/gnome/adwaita-l.jxl";
+                    picture-uri-dark = "${pkgs.gnome-backgrounds}/share/backgrounds/gnome/adwaita-d.jxl";
                 };
 
                 "org/gnome/desktop/screensaver" = {
-                    picture-uri = "${pkgs.gnome-backgrounds}/share/backgrounds/gnome/blobs-l.svg";
+                    picture-uri = "${pkgs.gnome-backgrounds}/share/backgrounds/gnome/adwaita-l.jxl";
                 };
             };
         }
