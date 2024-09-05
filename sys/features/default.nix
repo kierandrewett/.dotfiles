@@ -8,5 +8,6 @@ _:
         ./locale.nix
         ./audio.nix
         ./shell.nix
+        ./security.nix
     ];
 }
