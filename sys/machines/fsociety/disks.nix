@@ -14,6 +14,7 @@ _:
                             content = {
                                 type = "luks";
                                 name = "crypted";
+                                label = "";
                                 passwordFile = "/tmp/luks.key";
                                 settings = {
                                     allowDiscards = true;
