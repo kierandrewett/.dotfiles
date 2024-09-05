@@ -24,7 +24,8 @@
     # These packages are absolutely essential
     # and will be required on all machines!
     environment.systemPackages = with pkgs; [
-        pkgs.git
+        git
+        pciutils
     ];
 
     sops = {
