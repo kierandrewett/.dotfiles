@@ -10,23 +10,23 @@
             lockAll = true;
 
             settings = {
-                "/org/gnome/desktop/input-sources" = {
+                "org/gnome/desktop/input-sources" = {
                     sources = [
                         (lib.gvariant.mkTuple [ "xkb" "gb" ]) # English (UK)
                         (lib.gvariant.mkTuple [ "xkb" "us" ]) # English (US)
                     ];
                 };
 
-                "/org/gnome/desktop/interface" = {
+                "org/gnome/desktop/interface" = {
                     # Middle click paste
                     gtk-enable-primary-paste = false;
                 };
 
-                "/org/gnome/desktop/wm/preferences" = {
+                "org/gnome/desktop/wm/preferences" = {
                     button-layout = "icon:minimize,maximize,close";
                 };
 
-                "/org/gnome/desktop/wm/keybindings" = {
+                "org/gnome/desktop/wm/keybindings" = {
                     show-screenshot-ui = "['<Alt>s']";
                 };
             };
