@@ -18,11 +18,8 @@
 
     programs.zsh = {
         enable = true;
-        enableCompletion = true;
-        autosuggestion.enable = true;
-        syntaxHighlighting.enable = true;
 
-        loginShellInit = "fastfetch";
+        loginExtra = "fastfetch";
 
         history = {
             size = 10000;
