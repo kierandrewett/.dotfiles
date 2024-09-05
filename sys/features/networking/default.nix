@@ -11,18 +11,12 @@
     networking = {
         hostName = hostname;
 
-        wireless = {
-            enable = true;
-        };
+        useDHCP = true;
 
         nameservers = [
             "1.1.1.1"
             "1.0.0.1"
         ];
-
-        networkmanager = {
-            enable = true;
-        };
     };
 
     users.users.${username}.extraGroups = [
