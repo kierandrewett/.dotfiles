@@ -4,14 +4,6 @@
 }:
 {
     xdg = {
-        portal = {
-            enable = true;
-            extraPortals = with pkgs; [
-                xdg-desktop-portal-wlr
-                xdg-desktop-portal-gtk
-            ];
-        };
-
         mimeApps.defaultApplications = {
             # Internet Browsers
             "text/html" = "firefox.desktop";
