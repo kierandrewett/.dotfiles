@@ -10,8 +10,5 @@
         inputs.nixos-hardware.nixosModules.common-pc-ssd
 
         ./disks.nix
-
-        # Apps
-        ../../apps/all.nix
     ];
 }

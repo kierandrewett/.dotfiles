@@ -1,7 +1,6 @@
+_:
 {
-    pkgs,
-    ...
-}:
-{
-    
+    imports = [
+        ./firefox-nightly.nix
+    ];
 }
