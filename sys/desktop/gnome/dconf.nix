@@ -10,7 +10,7 @@
             lockAll = true;
 
             settings = {
-                "/org/gnome/desktop/input-sources/sources" = {
+                "/org/gnome/desktop/input-sources" = {
                     sources = [
                         (lib.gvariant.mkTuple [ "xkb" "gb" ]) # English (UK)
                         (lib.gvariant.mkTuple [ "xkb" "us" ]) # English (US)
