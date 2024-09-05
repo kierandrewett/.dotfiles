@@ -3,13 +3,21 @@
     ...
 }:
 {
-    networking.wireless.environmentFile = config.sops.templates."wifi/vm.env".path;
-    networking.wireless.networks = {
-        "@ssid@" = {
-            psk = "@psk@";
+    networking.networkmanager.ensureProfiles = {
+        environmentFiles = [config.sops.templates."wifi/vm.env".path];
 
-            # Always attempt to use this network
-            priority = 1000;
+        profiles.vm = {
+            connection = {
+                id = "vm";
+                type = "wifi";
+            };
+            wifi = {
+                ssid = "$SSID";
+            };
+            wifi-security = {
+                key-mgmt = "wpa-psk";
+                psk = "$PSK";
+            };
         };
     };
 }

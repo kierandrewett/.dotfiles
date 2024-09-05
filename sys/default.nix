@@ -48,8 +48,8 @@
         templates = {
             "wifi/vm.env" = {
                 content = ''
-                    ssid = "${config.sops.placeholder."networks/vm/ssid"}"
-                    psk = "${config.sops.placeholder."networks/vm/psk"}"
+                    SSID = "${config.sops.placeholder."networks/vm/ssid"}"
+                    PSK = "${config.sops.placeholder."networks/vm/psk"}"
                 '';
             };
         };
