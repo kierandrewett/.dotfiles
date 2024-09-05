@@ -25,7 +25,7 @@ with pkgs.gnomeExtensions; {
             show-mounts = false;
             require-pressure-to-show = false;
             running-indicator-style = "DOTS";
-            dash-max-icon-size = 64;
+            dash-max-icon-size = 56;
         };
     };
 }
