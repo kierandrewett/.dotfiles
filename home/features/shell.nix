@@ -24,9 +24,10 @@ in
     programs.zsh = {
         enable = true;
 
-        initExtra = "fastfetch";
-        promptInit = ''
+        initExtra = ''
             source ${zsh-headline}
+
+            fastfetch
         '';
 
         history = {
