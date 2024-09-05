@@ -13,7 +13,7 @@
         wireless = {
             enable = true;
             userControlled.enable = true;
-            backend = "iwd";
+            iwd.enable = true;
         };
 
         nameservers = [
