@@ -26,7 +26,7 @@
                     button-layout = "icon:minimize,maximize,close";
                 };
 
-                "org/gnome/desktop/wm/keybindings" = {
+                "org/gnome/shell/keybindings" = {
                     show-screenshot-ui = "['<Alt>s']";
                 };
 
