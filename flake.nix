@@ -18,6 +18,10 @@
         # Disko
         disko.url = "github:nix-community/disko";
         disko.inputs.nixpkgs.follows = "nixpkgs";
+
+        # Firefox Nightly
+        firefox-nightly.url = "github:nix-community/flake-firefox-nightly";
+        firefox-nightly.inputs.nixpkgs.follows = "nixpkgs";
     };
 
     outputs =
