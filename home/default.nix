@@ -13,7 +13,7 @@
     imports = [
         inputs.sops-nix.homeManagerModules.sops
 
-        ./apps
+        ./apps/all.nix
         ./features
         ./users
     ];
