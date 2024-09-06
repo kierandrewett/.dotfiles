@@ -10,6 +10,7 @@ let
         color-picker
         dash-to-dock
         do-not-disturb-while-screen-sharing-or-recording
+        gsconnect
         impatience
         mpris-label
         night-theme-switcher
