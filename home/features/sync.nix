@@ -3,19 +3,21 @@
     config,
     ...
 }:
+let
+    mountDir = "${config.home.homeDirectory}/Sync";
+in
 {
-    systemd.user.services.rclone-sync = {
+    systemd.user.services.rclone-mount = {
         Unit = {
-            Description = "Performs a bidirectional sync of data between the client and remote.";
-            StartLimitIntervalSec = 0;
+            Description = "Mounts the remote rclone synchronised drive.";
+            After = [ "network-online.target" ];
         };
-        Install = {
-            WantedBy = [ "default.target" ];
-        };
+        Install.WantedBy = [ "multi-user.target" ];
         Service = {
-            Restart = "always";
-            RestartSec = 60;
-            ExecStart = "${pkgs.writeShellScript "rclone-sync" ''
+            ExecStartPre = "${pkgs.writeShellScript "rclone-prepare" ''
+                mkdir -p ${mountDir}
+            ''}";
+            ExecStart = "${pkgs.writeShellScript "rclone-mount" ''
                 cat > /tmp/rclone-nc.conf << EOF
                 [nc]
                 type = webdav
@@ -27,17 +29,21 @@
 
                 RCLONE_CONFIG=/tmp/rclone-nc.conf
 
-                SHARED_OPTS="
-                    --create-empty-src-dirs \
-                    --compare size,modtime,checksum \
-                    --slow-hash-sync-only \
-                    --resilient \
-                    --fix-case \
-                    -MvP"
-
-                rclone bisync nc:/ ~/Documents/ $SHARED_OPTS --resync
-                rclone bisync nc:/ ~/Documents/ $SHARED_OPTS
+                rclone mount nc: ${mountDir} \
+                    --dir-cache-time 48h \
+                    --vfs-cache-mode full \
+                    --vfs-cache-max-age 48h \
+                    --vfs-read-chunk-size 10M \
+                    --vfs-read-chunk-size-limit 512M \
+                    --no-modtime \
+                    --buffer-size 512M
             ''}";
+            ExecStop = "${pkgs.writeShellScript "rclone-umount" ''
+                fusermount -u ${mountDir}
+            ''}";
+            Type = "notify";
+            Restart = "always";
+            RestartSec = "30s";
         };
     };
 }
