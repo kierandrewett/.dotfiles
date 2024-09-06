@@ -46,7 +46,7 @@
                 };
 
                 "org/gnome/desktop/interface" = {
-                    monospace-font-name = "Geist Mono";
+                    monospace-font-name = "Geist Mono 10";
                 };
             };
         }
