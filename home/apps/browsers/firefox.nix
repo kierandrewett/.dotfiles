@@ -34,21 +34,34 @@ in
                     steam-database
                     sponsorblock
                 ];
+            };
+        };
 
-                policies = {
-                    Preferences = {
-                        "browser.tabs.cardPreview.delayMs" = 250;
+        # https://mozilla.github.io/policy-templates/
+        policies = {
+            DisableFirefoxStudies = true;
+            DisableTelemetry = true;
+            
+            DontCheckDefaultBrowser = true;
 
-                        "devtools.chrome.enabled" = true;
+            FirefoxSuggest = {
+                SponsoredSuggestions = false;
+                ImproveSuggest = false;
+            };
 
-                        "general.autoScroll" = true;
+            # Not needed, we have Bitwarden
+            OfferToSaveLogins = false;
+            PasswordManagerEnabled = false;
 
-                        "widget.use-xdg-desktop-portal.file-picker" = 1;
-                        "widget.use-xdg-desktop-portal.location" = 1;
-                        "widget.use-xdg-desktop-portal.mime-handler" = 1;
-                        "widget.use-xdg-desktop-portal.open-uri" = 1;
-                    };
-                };
+            Preferences = {
+                "browser.tabs.cardPreview.delayMs" = 250;
+
+                "general.autoScroll" = true;
+
+                "widget.use-xdg-desktop-portal.file-picker" = 1;
+                "widget.use-xdg-desktop-portal.location" = 1;
+                "widget.use-xdg-desktop-portal.mime-handler" = 1;
+                "widget.use-xdg-desktop-portal.open-uri" = 1;
             };
         };
     };
