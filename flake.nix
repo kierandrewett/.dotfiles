@@ -25,6 +25,9 @@
 
         # NUR
         nur.url = "github:nix-community/nur";
+
+        # VSCode extensions
+        vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     };
 
     outputs =
