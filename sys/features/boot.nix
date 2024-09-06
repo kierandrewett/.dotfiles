@@ -38,7 +38,7 @@
 
                 # Max number of NixOS configurations allowed
                 # to be displayed in the boot loader.
-                configurationLimit = 10;
+                configurationLimit = 20;
             };
         };
     };
