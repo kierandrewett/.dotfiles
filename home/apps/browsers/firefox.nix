@@ -105,6 +105,7 @@ in
 
                 extraConfig = ''
                     lockPref("browser.uiCustomization.state", ${builtins.toJSON customizable-ui});
+                    user_pref("browser.uiCustomization.state", ${builtins.toJSON customizable-ui});
                 '';
             };
         };
