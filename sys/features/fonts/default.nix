@@ -14,4 +14,6 @@ in
         vistafonts
         segoe-ui
     ];
+
+    fonts.fontconfig.defaultFonts.monospace = [ "Geist Mono" ];
 }
