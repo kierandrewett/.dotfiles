@@ -25,7 +25,7 @@ in
 
         userSettings = {
             "window.titleBarStyle" = "custom";
-            "workbench.colorTheme" = "Github Dark Default";
+            "workbench.colorTheme" = "GitHub Dark Default";
             "workbench.iconTheme" = "material-icon-theme";
             "workbench.productIconTheme" = "fluent-icons";
         };
