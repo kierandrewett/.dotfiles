@@ -121,6 +121,9 @@ in
                     "toolkit.telemetry.unifiedIsOptIn" = false;
                     "toolkit.telemetry.updatePing.enabled" = false;
 
+                    "privacy.trackingprotection.enabled" = true;
+                    "dom.security.https_only_mode" = true;
+
                     "general.autoScroll" = true;
 
                     "widget.use-xdg-desktop-portal.file-picker" = 1;
@@ -134,6 +137,21 @@ in
                     user_pref("browser.uiCustomization.state", ${builtins.toJSON customizable-ui});
                 '';
             };
+        };
+
+        policies = {
+            UserMessaging = {
+				Locked = true;
+				ExtensionRecommendations = false;
+				FeatureRecommendations = false;
+				MoreFromMozilla = false;
+				SkipOnboarding = true;
+				UrlbarInterventions = false;
+				WhatsNew = false;
+			};
+
+            PasswordManagerEnabled = false;
+            OfferToSaveLogins = false;
         };
     };
 }
