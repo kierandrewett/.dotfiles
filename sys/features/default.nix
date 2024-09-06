@@ -3,6 +3,7 @@ _:
     imports = [
         ./networking
         ./video
+        ./fonts
 
         ./boot.nix
         ./locale.nix
