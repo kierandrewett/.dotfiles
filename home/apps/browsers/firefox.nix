@@ -23,10 +23,10 @@ let
                 "stop-reload-button"
                 "sidebar-button"
                 "home-button"
-                "customizableui-special-spring"
+                "customizableui-special-spring1"
                 "urlbar-container"
                 "edit-controls"
-                "customizableui-special-spring"
+                "customizableui-special-spring2"
                 "downloads-button"
                 "fxa-toolbar-menu-button"
                 "_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action" # Bitwarden
@@ -39,9 +39,9 @@ let
                 "menubar-items"
             ];
             TabsToolbar = [
-                "customizableui-special-spring"
-                "customizableui-special-spring"
-                "customizableui-special-spring"
+                "customizableui-special-spring3"
+                "customizableui-special-spring4"
+                "customizableui-special-spring5"
                 "tabbrowser-tabs"
                 "new-tab-button"
                 "alltabs-button"
