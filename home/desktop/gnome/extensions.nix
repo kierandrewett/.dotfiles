@@ -19,6 +19,8 @@ let
     ];
 in
 with pkgs.gnomeExtensions; {
+    home.packages = extensions;
+
     dconf.settings = {
         "org/gnome/shell" = {
             disable-user-extensions = false;

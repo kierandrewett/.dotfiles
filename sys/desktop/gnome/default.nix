@@ -22,9 +22,6 @@
         gnome-extension-manager
         gnome-tweaks
         gnome-backgrounds
-
-        # Gnome extensions
-        (gnomeExtensions.dash-to-dock)
     ];
 
     services.gnome.gnome-browser-connector.enable = true;
