@@ -25,17 +25,18 @@
                 vendor = nextcloud
                 EOF
 
-                rclone \
-                    --config /tmp/rclone-nc.conf \
-                    bisync \
-                    nc:/ \
-                    ~/Documents/ \
+                RCLONE_CONFIG=/tmp/rclone-nc.conf
+
+                SHARED_OPTS="
                     --create-empty-src-dirs \
                     --compare size,modtime,checksum \
                     --slow-hash-sync-only \
                     --resilient \
                     --fix-case \
-                    -MvP
+                    -MvP"
+
+                rclone bisync nc:/ ~/Documents/ $SHARED_OPTS --resync
+                rclone bisync nc:/ ~/Documents/ $SHARED_OPTS
             ''}";
         };
     };
