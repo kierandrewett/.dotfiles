@@ -1,4 +1,7 @@
-_:
 {
-    services.easyeffects.preset = "oemboost";
+    lib,
+    ...
+}:
+{
+    services.easyeffects.preset = lib.mkForce "oemboost";
 }
