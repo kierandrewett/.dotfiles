@@ -2,8 +2,15 @@
     config,
     username,
     pkgs,
+    lib,
     ...
 }:
+let
+    syncMap = {
+        # Local <=> Remote
+        "/Documents" = "/Documents";
+    };
+in
 {
     environment.systemPackages = with pkgs; [
         rclone
@@ -21,15 +28,17 @@
 
     environment.etc."rclone/nc.conf".source = config.sops.templates."rclone/nc.conf".path;
 
-    fileSystems."/home/${username}/Sync" = {
-        device = "nc:/";
-        fsType = "rclone";
-        options = [
-            "nodev"
-            "nofail"
-            "allow_other"
-            "args2env"
-            "config=/etc/rclone/nc.conf"
-        ];
-    };
+    fileSystems = lib.mapAttrs' (local: remote: {
+        "fileSystems.${"/home/${username}${local}"}" = {
+            device = "nc:${remote}";
+            fsType = "rclone";
+            options = [
+                "nodev"
+                "nofail"
+                "allow_other"
+                "args2env"
+                "config=/etc/rclone/nc.conf"
+            ];
+        };
+    }) syncMap;
 }
