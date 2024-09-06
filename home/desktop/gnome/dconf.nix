@@ -26,6 +26,8 @@
                 "org.gnome.SystemMonitor.desktop"
                 "org.gnome.Settings.desktop"
             ];
+
+            last-selected-power-profile = (lib.optional (type == "laptop") "power-saver");
         };
 
         "org/gnome/desktop/background" = {

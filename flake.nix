@@ -45,6 +45,7 @@
             nixosConfigurations = {
                 # Main PC
                 fsociety = helpers.mkSystem {
+                    type = "desktop";
                     hostname = "fsociety";
                     username = "kieran";
                     desktop = "gnome";
@@ -52,6 +53,7 @@
                 };
                 # Lenovo IdeaPad Slim 5
                 ssociety = helpers.mkSystem {
+                    type = "laptop";
                     hostname = "ssociety";
                     username = "kieran";
                     desktop = "gnome";
@@ -59,6 +61,7 @@
                 };
                 # Test VM
                 testvm = helpers.mkSystem {
+                    type = "desktop";
                     hostname = "testvm";
                     username = "kieran";
                     desktop = "gnome";

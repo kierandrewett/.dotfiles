@@ -7,6 +7,7 @@
 {
     mkSystem =
         {
+            type,
             hostname,
             desktop,
             username,
@@ -17,7 +18,7 @@
             system = platform;
 
             specialArgs = {
-                inherit inputs outputs username hostname platform desktop graphics stateVersion;
+                inherit inputs outputs type username hostname platform desktop graphics stateVersion;
             };
 
             modules = [
@@ -30,7 +31,7 @@
                     home-manager.backupFileExtension = "hmbak";
                     home-manager.users.${username}.imports = [../home];
                     home-manager.extraSpecialArgs = {
-                        inherit inputs outputs username hostname platform desktop graphics stateVersion;
+                        inherit inputs outputs type username hostname platform desktop graphics stateVersion;
                     };
                 }
 
