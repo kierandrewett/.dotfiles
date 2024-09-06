@@ -13,15 +13,17 @@
         };
         Service = {
             ExecStart = "${pkgs.writeShellScript "rclone-sync" ''
-                RCLONE_URL=$(cat ${config.sops.secrets."sync/nc/url".path})
-                RCLONE_USER=$(cat ${config.sops.secrets."sync/nc/username".path})
-                RCLONE_PASS=$(cat ${config.sops.secrets."sync/nc/password".path})
+                cat > /tmp/rclone-nc.conf << EOF
+                    [nc]
+                    type = webdav
+                    url = ${config.sops.secrets."sync/nc/url"}
+                    user = ${config.sops.secrets."sync/nc/username"}
+                    pass = ${config.sops.secrets."sync/nc/password"}
+                    vendor = nextcloud
+                EOF
 
                 rclone \
-                    --webdav-url $RCLONE_URL \
-                    --webdav-user $RCLONE_USER \
-                    --webdav-pass $RCLONE_PASS \
-                    --webdav-vendor nextcloud \
+                    --config /tmp/rclone-nc.conf \
                     bisync \
                     nc:/ \
                     ~/Documents/ \
@@ -31,6 +33,8 @@
                     --resilient \
                     --fix-case \
                     -MvP
+
+                rm -rf /tmp/rclone-nc.conf
             ''}";
         };
     };
