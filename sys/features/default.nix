@@ -10,5 +10,6 @@ _:
         ./audio.nix
         ./shell.nix
         ./hardware.nix
+        ./wine.nix
     ];
 }
