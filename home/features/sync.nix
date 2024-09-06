@@ -14,12 +14,12 @@
         Service = {
             ExecStart = "${pkgs.writeShellScript "rclone-sync" ''
                 cat > /tmp/rclone-nc.conf << EOF
-                    [nc]
-                    type = webdav
-                    url = $(cat ${config.sops.secrets."sync/nc/url".path})
-                    user = $(cat ${config.sops.secrets."sync/nc/username".path})
-                    pass = $(cat ${config.sops.secrets."sync/nc/password".path})
-                    vendor = nextcloud
+                [nc]
+                type = webdav
+                url = $(cat ${config.sops.secrets."sync/nc/url".path})
+                user = $(cat ${config.sops.secrets."sync/nc/username".path})
+                pass = $(cat ${config.sops.secrets."sync/nc/password".path})
+                vendor = nextcloud
                 EOF
 
                 rclone \
