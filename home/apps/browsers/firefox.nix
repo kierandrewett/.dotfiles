@@ -43,7 +43,7 @@ in
 
                 settings = {
                     "browser.newtabpage.activity-stream.topSitesRows" = 3;
-                    
+                    "browser.shell.checkDefaultBrowser" = false;
                     "browser.tabs.cardPreview.delayMs" = 250;
 
                     "extensions.autoDisableScopes" = 0; # Automatically enable extensions
