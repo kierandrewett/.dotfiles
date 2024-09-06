@@ -1,6 +1,4 @@
 _:
 {
-    imports = [
-        ./audio.nix
-    ];
+    services.easyeffects.preset = "oemboost";
 }

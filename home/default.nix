@@ -19,6 +19,7 @@
         ./desktop
         ./features
         ./users
+        ./config
     ] ++ lib.optional (builtins.pathExists (./. + "/machines/${hostname}")) ./machines/${hostname};
 
     home = {
