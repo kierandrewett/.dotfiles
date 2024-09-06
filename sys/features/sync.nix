@@ -20,7 +20,7 @@
     '';
 
 
-    environment.etc."rclone/nc.conf".source = config.sops.secrets."rclone/nc.conf".path;
+    environment.etc."rclone/nc.conf".source = config.sops.templates."rclone/nc.conf".path;
 
     fileSystems."/home/${username}/Sync" = {
         device = "nc:/";
