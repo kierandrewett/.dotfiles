@@ -12,9 +12,13 @@
         # pkgs.*
         gnome-tour
         gnome-connections
+        gnome-music
+        gnome-maps
         epiphany # Web
         geary # Email reader
         evince # Document viewer
+        yelp # Help
+
     ]);
 
     environment.systemPackages = with pkgs; [
