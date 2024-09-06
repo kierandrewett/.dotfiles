@@ -33,8 +33,6 @@
                     --resilient \
                     --fix-case \
                     -MvP
-
-                rm -rf /tmp/rclone-nc.conf
             ''}";
         };
     };
