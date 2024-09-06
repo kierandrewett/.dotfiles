@@ -36,4 +36,19 @@
     xdg.enable = true;
 
     nixpkgs.config.allowUnfree = true;
+
+    sops = {
+        age = {
+            keyFile = "${config.home.homeDirectory}/.config/sops/age/key.txt";
+            generateKey = false;
+        };
+
+        defaultSopsFile = ../secrets/secrets.yaml;
+
+        secrets = {
+            "sync/nc/url" = {};
+            "sync/nc/username" = {};
+            "sync/nc/password" = {};
+        };
+    };
 }
