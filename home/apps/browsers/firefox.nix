@@ -145,6 +145,8 @@ in
                     "services.sync.engine.prefs" = false;
                     "services.sync.engine.prefs.modified" = false;
 
+                    "signon.rememberSignons" = false;
+
                     "widget.use-xdg-desktop-portal.file-picker" = 1;
                     "widget.use-xdg-desktop-portal.location" = 1;
                     "widget.use-xdg-desktop-portal.mime-handler" = 1;
