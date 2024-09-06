@@ -89,6 +89,7 @@ in
                     "browser.toolbars.bookmarks.visibility" = "always";
 
                     "devtools.chrome.enabled" = true;
+                    "devtools.debugger.remote-enabled" = true;
                     "devtools.toolbox.host" = "right";
 
                     "extensions.autoDisableScopes" = 0; # Automatically enable extensions
