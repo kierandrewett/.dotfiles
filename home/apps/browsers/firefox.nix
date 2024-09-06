@@ -126,6 +126,8 @@ in
 
                     "general.autoScroll" = true;
 
+                    "media.eme.enabled" = true; # DRM
+
                     "widget.use-xdg-desktop-portal.file-picker" = 1;
                     "widget.use-xdg-desktop-portal.location" = 1;
                     "widget.use-xdg-desktop-portal.mime-handler" = 1;
