@@ -15,9 +15,9 @@
         inputs.sops-nix.nixosModules.sops
         inputs.disko.nixosModules.disko
 
+        ./apps/all.nix
         ./machines/${hostname}
         ./desktop/${desktop}
-        ./apps
         ./features
         ./users
     ];
