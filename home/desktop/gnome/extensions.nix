@@ -29,6 +29,10 @@ with pkgs.gnomeExtensions; {
             enabled-extensions = builtins.map (extension: extension.extensionUuid) extensions;
         };
 
+        "org/gnome/shell/extensions/bluetooth_battery_indicator" = lib.mkIf (lib.elem bluetooth-battery extensions) {
+            hide-indicator = true;
+        };
+
         "org/gnome/shell/extensions/color-picker" = lib.mkIf (lib.elem color-picker extensions) {
             enable-shortcut = true;
             enable-systray = false;
