@@ -44,8 +44,8 @@ in
                 settings = {
                     "browser.tabs.cardPreview.delayMs" = 250;
 
-                    # Automatically enable extensions
-                    "extensions.autoDisableScopes" = 0;
+                    "extensions.autoDisableScopes" = 0; # Automatically enable extensions
+                    "extensions.update.enabled" = false; # Disable extension updates as this is handled by Nix
 
                     "general.autoScroll" = true;
 
