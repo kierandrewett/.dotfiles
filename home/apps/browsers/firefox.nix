@@ -123,7 +123,7 @@ in
                     Value = builtins.toJSON customizable-ui;
                     Status = "locked";
                 };
-            }
+            };
 
             # Not needed, we have Bitwarden
             OfferToSaveLogins = false;
