@@ -28,8 +28,8 @@ in
 
     environment.etc."rclone/nc.conf".source = config.sops.templates."rclone/nc.conf".path;
 
-    fileSystems = lib.mapAttrs' (local: remote: {
-        "/home/${username}${local}" = {
+    fileSystems = lib.mapAttrs' (local: remote:
+        lib.nameValuePair "/home/${username}${local}" {
             device = "nc:${remote}";
             fsType = "rclone";
             options = [
@@ -39,6 +39,6 @@ in
                 "args2env"
                 "config=/etc/rclone/nc.conf"
             ];
-        };
-    }) syncMap;
+        }
+    ) syncMap;
 }
