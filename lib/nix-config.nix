@@ -6,6 +6,7 @@
     pkgs,
     lib,
     stateVersion,
+    config,
     ...
 }:
 {
@@ -35,6 +36,37 @@
     };
 
     nixpkgs.hostPlatform = lib.mkDefault "${platform}";
+
+    sops = {
+        age = {
+            keyFile = "/home/${username}/.config/sops/age/key.txt";
+            generateKey = false;
+        };
+
+        defaultSopsFile = ../secrets/secrets.yaml;
+
+        secrets = {
+            "luks/passphrase" = {};
+
+            "users/${username}/passwd" = {};
+
+            "networks/vm/ssid" = {};
+            "networks/vm/psk" = {};
+
+            "sync/nc/url" = {};
+            "sync/nc/username" = {};
+            "sync/nc/password" = {};
+        };
+
+        templates = {
+            "wifi/vm.env" = {
+                content = ''
+                    SSID = "${config.sops.placeholder."networks/vm/ssid"}"
+                    PSK = "${config.sops.placeholder."networks/vm/psk"}"
+                '';
+            };
+        };
+    };
 
     system = {
         inherit stateVersion;
