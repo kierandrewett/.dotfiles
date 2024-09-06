@@ -6,11 +6,7 @@
     ...
 }:
 let
-    package = inputs.firefox-nightly.packages.${platform}.firefox-nightly-bin.override {
-        nativeMessagingHosts = with pkgs; [
-            (lib.optional (desktop == "gnome") gnome-browser-connector)
-        ];
-    };
+    package = inputs.firefox-nightly.packages.${platform}.firefox-nightly-bin;
 
     customizable-ui = builtins.toJSON {
         placements = {
