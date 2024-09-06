@@ -30,17 +30,14 @@ let
                 ImproveSuggest = false;
             };
 
-            Preferences = {
-                "browser.uiCustomization.state" = {
-                    Value = builtins.toJSON customizable-ui;
-                    Status = "locked";
-                };
-            };
-
             # Not needed, we have Bitwarden
             OfferToSaveLogins = false;
             PasswordManagerEnabled = false;
         };
+
+        extraPrefs = ''
+            lockPref("browser.uiCustomization.state", "${builtins.toJSON customizable-ui}");
+        '';
     };
 
     customizable-ui = {
