@@ -7,11 +7,14 @@
     systemd.user.services.rclone-sync = {
         Unit = {
             Description = "Performs a bidirectional sync of data between the client and remote.";
+            StartLimitIntervalSec = 0;
         };
         Install = {
             WantedBy = [ "default.target" ];
         };
         Service = {
+            Restart = "always";
+            RestartSec = 60;
             ExecStart = "${pkgs.writeShellScript "rclone-sync" ''
                 cat > /tmp/rclone-nc.conf << EOF
                 [nc]
