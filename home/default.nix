@@ -34,4 +34,6 @@
     fonts.fontconfig.enable = true;
 
     xdg.enable = true;
+
+    nixpkgs.config.allowUnfree = true;
 }
