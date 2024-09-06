@@ -6,6 +6,8 @@
 }:
 {
     imports = [
+        ./firewall.nix
+        
         ./wifi/vm.nix
     ];
 
