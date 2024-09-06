@@ -14,8 +14,8 @@ let
         impatience
         mpris-label
         night-theme-switcher
-        resource-monitor
         steal-my-focus-window
+        system-monitor
     ];
 in
 with pkgs.gnomeExtensions; {
