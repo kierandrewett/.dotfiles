@@ -45,6 +45,10 @@
 
             "networks/vm/ssid" = {};
             "networks/vm/psk" = {};
+
+            "sync/nc/url" = {};
+            "sync/nc/username" = {};
+            "sync/nc/password" = {};
         };
 
         templates = {
