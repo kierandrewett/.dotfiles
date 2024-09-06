@@ -26,6 +26,7 @@
         gnome-extension-manager
         gnome-tweaks
         gnome-backgrounds
+        gnome-boxes
     ];
 
     services.gnome.gnome-browser-connector.enable = true;
