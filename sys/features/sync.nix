@@ -10,14 +10,17 @@
     ];
 
     # Nextcloud Sync
-    environment.etc."rclone/nc.conf".text = ''
+    sops.templates."rclone/nc.conf".content = ''
         [nc]
         type = webdav
-        url = ${config.sops.secrets."sync/nc/url"}
-        user = ${config.sops.secrets."sync/nc/username"}
-        pass = ${config.sops.secrets."sync/nc/password"}
+        url = ${config.sops.placeholder."sync/nc/url"}
+        user = ${config.sops.placeholder."sync/nc/username"}
+        pass = ${config.sops.placeholder."sync/nc/password"}
         vendor = nextcloud
     '';
+
+
+    environment.etc."rclone/nc.conf".source = config.sops.secrets."rclone/nc.conf".path;
 
     fileSystems."/home/${username}/Sync" = {
         device = "nc:/";
