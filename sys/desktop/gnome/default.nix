@@ -29,7 +29,9 @@
         gnome-boxes
 
         adw-gtk3
-    ];
+    ] ++ (with pkgs.gnome; [
+        dconf-editor
+    ]);
 
     services.gnome.gnome-browser-connector.enable = true;
 
