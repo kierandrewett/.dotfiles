@@ -21,7 +21,8 @@ in
 with pkgs.gnomeExtensions; {
     dconf.settings = {
         "org/gnome/shell" = {
-            disable-user-extensions = false;
+            disable-user-extensions = true;
+            disable-extension-version-validation = true;
             disabled-extensions = [];
             enabled-extensions = builtins.map (extension: extension.extensionUuid) extensions;
         };
