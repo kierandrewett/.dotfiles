@@ -29,6 +29,9 @@
                     home-manager.useGlobalPkgs = true;
                     home-manager.useUserPackages = true;
                     home-manager.backupFileExtension = "hmbak";
+                    home-manager.sharedModules = [
+                        inputs.sops-nix.homeManagerModules.sops
+                    ];
                     home-manager.users.${username}.imports = [../home];
                     home-manager.extraSpecialArgs = {
                         inherit inputs outputs type username hostname platform desktop graphics stateVersion;
