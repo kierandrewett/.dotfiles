@@ -54,4 +54,6 @@
             };
         };
     };
+
+    nixpkgs.hostPlatform = lib.mkDefault "${platform}";
 }
