@@ -12,32 +12,6 @@ let
         nativeMessagingHosts = with pkgs; [
             (lib.optional (desktop == "gnome") gnome-browser-connector)
         ];
-
-        # https://mozilla.github.io/policy-templates/
-        extraPolicies = {
-            DisableFirefoxStudies = true;
-            DisableTelemetry = true;
-
-            DontCheckDefaultBrowser = true;
-
-            FirefoxHome = {
-                SponsoredTopSites = false;
-                SponsoredPocket = false;
-            };
-
-            FirefoxSuggest = {
-                SponsoredSuggestions = false;
-                ImproveSuggest = false;
-            };
-
-            # Not needed, we have Bitwarden
-            OfferToSaveLogins = false;
-            PasswordManagerEnabled = false;
-        };
-
-        extraPrefs = ''
-            lockPref("browser.uiCustomization.state", "${builtins.toJSON customizable-ui}");
-        '';
     };
 
     customizable-ui = {
@@ -124,7 +98,34 @@ in
                     "widget.use-xdg-desktop-portal.mime-handler" = 1;
                     "widget.use-xdg-desktop-portal.open-uri" = 1;
                 };
+
+                extraConfig = ''
+                    lockPref("browser.uiCustomization.state", "${builtins.toJSON customizable-ui}");
+                '';
             };
+        };
+
+
+        # https://mozilla.github.io/policy-templates/
+        policies = {
+            DisableFirefoxStudies = true;
+            DisableTelemetry = true;
+
+            DontCheckDefaultBrowser = true;
+
+            FirefoxHome = {
+                SponsoredTopSites = false;
+                SponsoredPocket = false;
+            };
+
+            FirefoxSuggest = {
+                SponsoredSuggestions = false;
+                ImproveSuggest = false;
+            };
+
+            # Not needed, we have Bitwarden
+            OfferToSaveLogins = false;
+            PasswordManagerEnabled = false;
         };
     };
 }
