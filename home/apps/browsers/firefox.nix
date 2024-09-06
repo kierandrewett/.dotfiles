@@ -1,11 +1,12 @@
 {
     inputs,
     platform,
+    pkgs,
     ...
 }:
 let
     package = inputs.firefox-nightly.packages.${platform}.firefox-nightly-bin;
-    addons = inputs.firefox-addons.packages.${platform};
+    addons = pkgs.nur.repos.rycee.firefox-addons;
 in
 {
     programs.firefox = {

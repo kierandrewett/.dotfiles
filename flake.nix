@@ -23,9 +23,8 @@
         firefox-nightly.url = "github:nix-community/flake-firefox-nightly";
         firefox-nightly.inputs.nixpkgs.follows = "nixpkgs";
 
-        # Firefox addons
-        firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-        firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
+        # NUR
+        nur.url = "github:nix-community/nur";
     };
 
     outputs =
@@ -65,6 +64,10 @@
                     desktop = "gnome";
                 };
             };
+
+            nixpkgs.overlays = [
+                inputs.nur.overlay
+            ];
 
             packages = helpers.forAllSystems (system: nixpkgs.legacyPackages.${system});
         };
