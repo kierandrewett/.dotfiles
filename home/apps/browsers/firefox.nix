@@ -153,6 +153,27 @@ in
                     "widget.use-xdg-desktop-portal.open-uri" = 1;
                 };
 
+                policies = {
+                    BlockAboutConfig = true;
+
+                    UserMessaging = {
+                        Locked = true;
+                        ExtensionRecommendations = false;
+                        FeatureRecommendations = false;
+                        MoreFromMozilla = false;
+                        SkipOnboarding = true;
+                        UrlbarInterventions = false;
+                        WhatsNew = false;
+                    };
+
+                    PasswordManagerEnabled = false;
+                    OfferToSaveLogins = false;
+
+                    ExtensionSettings = {
+                        "*".installation_mode = "blocked";
+                    };
+                };
+
                 extraConfig = ''
                     lockPref("browser.uiCustomization.state", ${builtins.toJSON customizable-ui});
                     user_pref("browser.uiCustomization.state", ${builtins.toJSON customizable-ui});
