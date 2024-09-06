@@ -8,6 +8,7 @@
     stateVersion,
     username,
     desktop,
+    hostname,
     ...
 }:
 {
@@ -18,7 +19,7 @@
         ./desktop
         ./features
         ./users
-    ];
+    ] ++ lib.optional (builtins.pathExists (./. + "/machines/${hostname}")) ./machines/${hostname};
 
     home = {
         inherit stateVersion;
