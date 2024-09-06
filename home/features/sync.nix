@@ -7,9 +7,9 @@
     home.file.".config/rclone/nc.conf".text = ''
         [nc]
         type = webdav
-        url = ${config.sops.placeholder."sync/nc/url"}
-        user = ${config.sops.placeholder."sync/nc/username"}
-        pass = ${config.sops.placeholder."sync/nc/password"}
+        url = ${config.sops.secrets."sync/nc/url"}
+        user = ${config.sops.secrets."sync/nc/username"}
+        pass = ${config.sops.secrets."sync/nc/password"}
         vendor = nextcloud
     '';
 
