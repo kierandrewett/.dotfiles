@@ -13,6 +13,47 @@ let
             (lib.optional (desktop == "gnome") gnome-browser-connector)
         ];
     };
+
+    customizable-ui = {
+        placements = {
+            unified-extensions-area = [];
+            nav-bar = [
+                "back-button"
+                "forward-button"
+                "stop-reload-button"
+                "sidebar-button"
+                "home-button"
+                "customizableui-special-spring"
+                "urlbar-container"
+                "edit-controls"
+                "customizableui-special-spring"
+                "downloads-button"
+                "fxa-toolbar-menu-button"
+                "_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action" # Bitwarden
+                "ublock0_raymondhill_net-browser-action"
+                "unified-extensions-button"
+                "profiler-button"
+                "developer-button"
+            ];
+            toolbar-menubar = [
+                "menubar-items"
+            ];
+            TabsToolbar = [
+                "customizableui-special-spring"
+                "customizableui-special-spring"
+                "customizableui-special-spring"
+                "tabbrowser-tabs"
+                "new-tab-button"
+                "alltabs-button"
+            ];
+            PersonalToolbar = [
+                "personal-bookmarks"
+            ];
+        };
+
+        currentVersion = 29;
+        newElementCount = 0;
+    };
 in
 {
     programs.firefox = {
@@ -45,6 +86,7 @@ in
                     "browser.newtabpage.activity-stream.topSitesRows" = 3;
                     "browser.shell.checkDefaultBrowser" = false;
                     "browser.tabs.cardPreview.delayMs" = 250;
+                    "browser.uiCustomization.state" = builtins.toJSON customizable-ui;
 
                     "extensions.autoDisableScopes" = 0; # Automatically enable extensions
                     "extensions.update.enabled" = false; # Disable extension updates as this is handled by Nix
