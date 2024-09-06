@@ -9,6 +9,7 @@ _:
         ./locale.nix
         ./audio.nix
         ./shell.nix
+        ./sync.nix
         ./hardware.nix
         ./wine.nix
     ];
