@@ -12,4 +12,8 @@
     boot.kernelModules = [
         "mt7921e" # Wi-Fi
     ];
+
+    programs.vscode.settings = {
+        
+    }
 }

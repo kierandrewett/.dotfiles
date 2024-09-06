@@ -24,17 +24,18 @@ in
         ];
 
         userSettings = {
-            "window.titleBarStyle" = "custom";
-            "workbench.colorTheme" = "GitHub Dark Default";
-            "workbench.iconTheme" = "material-icon-theme";
-            "workbench.productIconTheme" = "fluent-icons";
-
-            "telemetry.telemetryLevel" = "off";
-
+            "editor.fontFamily" = "monospace";
             "editor.inlineSuggest.enabled" = true;
             "editor.stickyScroll.enabled" = true;
 
-            "editor.fontFamily" = "monospace";
+            "telemetry.telemetryLevel" = "off";
+
+            "window.titleBarStyle" = "custom";
+            "window.zoomLevel" = 1;
+
+            "workbench.colorTheme" = "GitHub Dark Default";
+            "workbench.iconTheme" = "material-icon-theme";
+            "workbench.productIconTheme" = "fluent-icons";
         };
     };
 }
