@@ -21,7 +21,7 @@
                 "org.gnome.Extensions.desktop"
                 "easyeffects.desktop"
                 "org.gnome.tweaks.desktop"
-                "spacecadetpinball.desktop"
+                "SpaceCadetPinball.desktop"
                 "org.gnome.SystemMonitor.desktop"
                 "org.gnome.Settings.desktop"
             ];
