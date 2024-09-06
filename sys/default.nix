@@ -26,6 +26,7 @@
     environment.systemPackages = with pkgs; [
         git
         pciutils
+        nix-prefetch
     ];
 
     sops = {
