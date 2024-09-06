@@ -6,8 +6,6 @@
     ...
 }:
 let
-    hasConfig = builtins.pathExists /home/${username}/.config/rclone/nc.conf;
-
     syncMap = {
         # Local <=> Remote
         "/Documents" = "/Documents";
@@ -28,7 +26,7 @@ in
         vendor = nextcloud
     '';
 
-    fileSystems = if hasConfig then lib.mapAttrs' (local: remote:
+    fileSystems = lib.mapAttrs' (local: remote:
         lib.nameValuePair "/home/${username}${local}" {
             device = "nc:${remote}";
             fsType = "rclone";
@@ -40,5 +38,5 @@ in
                 "config=${config.sops.templates."rclone/nc.conf".path}"
             ];
         }
-    ) syncMap else {};
+    ) syncMap;
 }
