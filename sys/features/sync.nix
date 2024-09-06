@@ -29,7 +29,7 @@ in
     environment.etc."rclone/nc.conf".source = config.sops.templates."rclone/nc.conf".path;
 
     fileSystems = lib.mapAttrs' (local: remote: {
-        "fileSystems.${"/home/${username}${local}"}" = {
+        "/home/${username}${local}" = {
             device = "nc:${remote}";
             fsType = "rclone";
             options = [
