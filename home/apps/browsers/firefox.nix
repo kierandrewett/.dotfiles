@@ -156,6 +156,12 @@ in
                 extraConfig = ''
                     lockPref("browser.uiCustomization.state", ${builtins.toJSON customizable-ui});
                     user_pref("browser.uiCustomization.state", ${builtins.toJSON customizable-ui});
+
+                    lockPref("services.sync.engine.addons", false);
+                    user_pref("services.sync.engine.addons", false);
+
+                    lockPref("services.sync.engine.prefs", false);
+                    user_pref("services.sync.engine.prefs", false);
                 '';
             };
         };
