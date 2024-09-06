@@ -14,8 +14,6 @@
     imports = [
         inputs.sops-nix.homeManagerModules.sops
 
-        ../lib/nix-config.nix
-
         ./apps/all.nix
         ./desktop
         ./features

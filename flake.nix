@@ -66,12 +66,6 @@
                 };
             };
 
-            nix.gc = {
-                automatic = true;
-                dates = "weekly";
-                options = "--delete-older-than 7d";
-            };
-
             packages = helpers.forAllSystems (system: nixpkgs.legacyPackages.${system});
         };
 }
