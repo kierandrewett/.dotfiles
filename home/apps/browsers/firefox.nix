@@ -88,6 +88,9 @@ in
                     "browser.tabs.cardPreview.delayMs" = 250;
                     "browser.toolbars.bookmarks.visibility" = "always";
 
+                    "devtools.chrome.enabled" = true;
+                    "devtools.toolbox.host" = "right";
+
                     "extensions.autoDisableScopes" = 0; # Automatically enable extensions
                     "extensions.update.enabled" = false; # Disable extension updates as this is handled by Nix
 
