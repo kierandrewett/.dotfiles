@@ -27,6 +27,7 @@
                 {
                     home-manager.useGlobalPkgs = true;
                     home-manager.useUserPackages = true;
+                    home-manager.backupFileExtension = "hmbak";
                     home-manager.users.${username}.imports = [../home];
                     home-manager.extraSpecialArgs = {
                         inherit inputs outputs username hostname platform desktop graphics stateVersion;
