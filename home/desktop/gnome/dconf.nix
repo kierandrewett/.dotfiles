@@ -37,5 +37,9 @@
             picture-options = "zoom";
             picture-uri = "${pkgs.gnome-backgrounds}/share/backgrounds/gnome/adwaita-d.jxl";
         };
+
+        "org/gtk/gtk4/settings/file-chooser" = {
+            show-hidden = true;
+        };
     };
 }
