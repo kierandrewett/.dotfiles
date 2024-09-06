@@ -16,9 +16,9 @@
                 cat > /tmp/rclone-nc.conf << EOF
                     [nc]
                     type = webdav
-                    url = ${config.sops.secrets."sync/nc/url"}
-                    user = ${config.sops.secrets."sync/nc/username"}
-                    pass = ${config.sops.secrets."sync/nc/password"}
+                    url = $(cat ${config.sops.secrets."sync/nc/url".path})
+                    user = $(cat ${config.sops.secrets."sync/nc/username".path})
+                    pass = $(cat ${config.sops.secrets."sync/nc/password".path})
                     vendor = nextcloud
                 EOF
 
