@@ -6,7 +6,6 @@
 }:
 let
     package = inputs.firefox-nightly.packages.${platform}.firefox-nightly-bin;
-    addons = pkgs.nur.repos.rycee.firefox-addons;
 in
 {
     programs.firefox = {
@@ -24,7 +23,7 @@ in
                     default = "DuckDuckGo";
                 };
 
-                extensions = with addons; [
+                extensions = with pkgs.nur.repos.rycee.firefox-addons; [
                     ublock-origin
                     bitwarden
                     darkreader

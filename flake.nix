@@ -65,9 +65,13 @@
                 };
             };
 
-            nixpkgs.overlays = [
-                inputs.nur.overlay
-            ];
+            nixpkgs = {
+                config.allowUnfree = true;
+
+                overlays = [
+                    inputs.nur.overlay
+                ];
+            };
 
             packages = helpers.forAllSystems (system: nixpkgs.legacyPackages.${system});
         };
