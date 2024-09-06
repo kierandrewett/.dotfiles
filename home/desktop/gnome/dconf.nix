@@ -10,6 +10,7 @@
                 "org.gnome.Nautilus.desktop"
                 "firefox-nightly.desktop"
                 "discord-canary.desktop"
+                "vesktop.desktop"
                 "Spotify.desktop"
                 "figma.desktop"
                 "code.desktop"
