@@ -19,10 +19,10 @@
                 RSYNC_PASS=(cat ${config.sops.secrets."sync/nc/password".path}})
 
                 rsync \
-                    --webdav-url $RSYNC_URL
-                    --webdav-user $RSYNC_USER
-                    --webdav-pass $RSYNC_PASS
-                    --webdav-vendor nextcloud
+                    --webdav-url $RSYNC_URL \
+                    --webdav-user $RSYNC_USER \
+                    --webdav-pass $RSYNC_PASS \
+                    --webdav-vendor nextcloud \
                     bisync \
                     nc:/ \
                     ~/Documents/ \
