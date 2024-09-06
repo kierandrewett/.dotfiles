@@ -11,7 +11,7 @@
                 "firefox-nightly.desktop"
                 "discord-canary.desktop"
                 "vesktop.desktop"
-                "Spotify.desktop"
+                "spotify.desktop"
                 "figma.desktop"
                 "code.desktop"
                 "com.valvesoftware.Steam.desktop"
