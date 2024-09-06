@@ -2,6 +2,7 @@
     inputs,
     platform,
     pkgs,
+    desktop,
     ...
 }:
 let
