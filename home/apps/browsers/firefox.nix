@@ -131,6 +131,20 @@ in
 
                     "media.eme.enabled" = true; # DRM
 
+                    # Enable sync for all "places" related data
+                    "services.sync.engine.addresses" = true;
+                    "services.sync.engine.bookmarks" = true;
+                    "services.sync.engine.creditcards" = true;
+                    "services.sync.engine.history" = true;
+                    "services.sync.engine.passwords" = true;
+                    "services.sync.engine.tabs" = true;
+
+                    # Disable sync for addons and prefs
+                    # This is handled by Nix and we don't need to sync these
+                    "services.sync.engine.addons" = false;
+                    "services.sync.engine.prefs" = false;
+                    "services.sync.engine.prefs.modified" = false;
+
                     "widget.use-xdg-desktop-portal.file-picker" = 1;
                     "widget.use-xdg-desktop-portal.location" = 1;
                     "widget.use-xdg-desktop-portal.mime-handler" = 1;
@@ -157,6 +171,10 @@ in
 
             PasswordManagerEnabled = false;
             OfferToSaveLogins = false;
+
+            ExtensionSettings = {
+                "*".installation_mode = "blocked";
+            };
         };
     };
 }
