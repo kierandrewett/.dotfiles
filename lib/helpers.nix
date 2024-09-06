@@ -2,7 +2,6 @@
     inputs,
     outputs,
     stateVersion,
-    nur,
     ...
 }:
 {
@@ -18,7 +17,7 @@
             system = platform;
 
             specialArgs = {
-                inherit inputs outputs nur username hostname platform desktop graphics stateVersion;
+                inherit inputs outputs username hostname platform desktop graphics stateVersion;
             };
 
             modules = [
@@ -30,7 +29,7 @@
                     home-manager.useUserPackages = true;
                     home-manager.users.${username}.imports = [../home];
                     home-manager.extraSpecialArgs = {
-                        inherit inputs outputs nur username hostname platform desktop graphics stateVersion;
+                        inherit inputs outputs username hostname platform desktop graphics stateVersion;
                     };
                 }
 

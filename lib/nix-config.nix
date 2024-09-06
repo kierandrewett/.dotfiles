@@ -1,4 +1,5 @@
 {
+    inputs,
     username,
     outputs,
     platform,
@@ -8,6 +9,16 @@
     ...
 }:
 {
+    nixpkgs = {
+        config = {
+            allowUnfree = true;
+        };
+
+        overlays = [
+            inputs.nur.overlay
+        ];
+    };
+
     nix = {
         settings = {
             experimental-features = "nix-command flakes";
@@ -22,8 +33,6 @@
             options = "--delete-older-than 7d";
         };
     };
-
-    nixpkgs.config.allowUnfree = true;
 
     nixpkgs.hostPlatform = lib.mkDefault "${platform}";
 

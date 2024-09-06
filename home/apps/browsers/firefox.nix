@@ -2,6 +2,7 @@
     inputs,
     platform,
     pkgs,
+    username,
     ...
 }:
 let
@@ -15,7 +16,7 @@ in
         inherit package;
 
         profiles = {
-            default = {
+            ${username} = {
                 isDefault = true;
 
                 search = {
@@ -34,6 +35,17 @@ in
                     steam-database
                     sponsorblock
                 ];
+
+                settings = {
+                    "browser.tabs.cardPreview.delayMs" = 250;
+
+                    "general.autoScroll" = true;
+
+                    "widget.use-xdg-desktop-portal.file-picker" = 1;
+                    "widget.use-xdg-desktop-portal.location" = 1;
+                    "widget.use-xdg-desktop-portal.mime-handler" = 1;
+                    "widget.use-xdg-desktop-portal.open-uri" = 1;
+                };
             };
         };
 
@@ -52,17 +64,6 @@ in
             # Not needed, we have Bitwarden
             OfferToSaveLogins = false;
             PasswordManagerEnabled = false;
-
-            Preferences = {
-                "browser.tabs.cardPreview.delayMs" = 250;
-
-                "general.autoScroll" = true;
-
-                "widget.use-xdg-desktop-portal.file-picker" = 1;
-                "widget.use-xdg-desktop-portal.location" = 1;
-                "widget.use-xdg-desktop-portal.mime-handler" = 1;
-                "widget.use-xdg-desktop-portal.open-uri" = 1;
-            };
         };
     };
 }

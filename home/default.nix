@@ -13,7 +13,6 @@
 {
     imports = [
         inputs.sops-nix.homeManagerModules.sops
-        inputs.nur.hmModules.nur
 
         ./apps/all.nix
         ./desktop

@@ -3,8 +3,8 @@ _:
     imports = [
         ./browsers
         ./chat
-        ./coding
         ./design
+        ./develop
         ./gaming
         ./media
         ./productivity
