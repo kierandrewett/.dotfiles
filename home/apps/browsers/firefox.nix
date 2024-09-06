@@ -41,7 +41,7 @@ in
         policies = {
             DisableFirefoxStudies = true;
             DisableTelemetry = true;
-            
+
             DontCheckDefaultBrowser = true;
 
             FirefoxSuggest = {
