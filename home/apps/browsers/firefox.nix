@@ -1,5 +1,7 @@
 {
     inputs,
+    lib,
+    desktop,
     platform,
     pkgs,
     username,
@@ -11,9 +13,12 @@ in
 {
     programs.firefox = {
         enable = true;
-        enableGnomeExtensions = true;
 
         inherit package;
+
+        nativeMessagingHosts = with pkgs; [
+            (lib.optional (desktop == "gnome") gnome-browser-connector)
+        ];
 
         profiles = {
             ${username} = {
