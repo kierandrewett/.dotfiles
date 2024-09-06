@@ -17,6 +17,7 @@
 
         ./machines/${hostname}
         ./desktop/${desktop}
+        ./apps
         ./features
         ./users
     ];
