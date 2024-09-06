@@ -4,15 +4,6 @@
     ...
 }:
 {
-    home.file.".config/rclone/nc.conf".text = ''
-        [nc]
-        type = webdav
-        url = ${config.sops.secrets."sync/nc/url"}
-        user = ${config.sops.secrets."sync/nc/username"}
-        pass = ${config.sops.secrets."sync/nc/password"}
-        vendor = nextcloud
-    '';
-
     systemd.user.services.rclone-sync = {
         Unit = {
             Description = "Performs a bidirectional sync of data between the client and remote.";
@@ -23,7 +14,15 @@
         Service = {
             ExecStart = "${pkgs.writeShellScript "rclone-sync" ''
                 #!/run/current-system/sw/bin/bash
-                rsync --config ${config.home.file.".config/rclone/nc.conf".path} \
+                RSYNC_URL=(cat ${config.sops.secrets."sync/nc/url".path}})
+                RSYNC_USER=(cat ${config.sops.secrets."sync/nc/username".path}})
+                RSYNC_PASS=(cat ${config.sops.secrets."sync/nc/password".path}})
+
+                rsync \
+                    --webdav-url $RSYNC_URL
+                    --webdav-user $RSYNC_USER
+                    --webdav-pass $RSYNC_PASS
+                    --webdav-vendor nextcloud
                     bisync \
                     nc:/ \
                     ~/Documents/ \
