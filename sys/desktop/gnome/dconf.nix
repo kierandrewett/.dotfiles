@@ -46,6 +46,9 @@
                 };
 
                 "org/gnome/desktop/interface" = {
+                    # Sets the legacy GTK3 theme to modern libawaita
+                    gtk-theme = "adw-gtk3";
+
                     monospace-font-name = "Geist Mono 10";
                     show-battery-percentage = true;
                 };

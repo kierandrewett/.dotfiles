@@ -27,6 +27,8 @@
         gnome-tweaks
         gnome-backgrounds
         gnome-boxes
+
+        adw-gtk3
     ];
 
     services.gnome.gnome-browser-connector.enable = true;
