@@ -8,17 +8,17 @@
     ...
 }:
 let
-    package = inputs.firefox-nightly.packages.${platform}.firefox-nightly-bin;
+    package = inputs.firefox-nightly.packages.${platform}.firefox-nightly-bin.override {
+        nativeMessagingHosts = with pkgs; [
+            (lib.optional (desktop == "gnome") gnome-browser-connector)
+        ];
+    };
 in
 {
     programs.firefox = {
         enable = true;
 
         inherit package;
-
-        nativeMessagingHosts.packages = with pkgs; [
-            (lib.optional (desktop == "gnome") gnome-browser-connector)
-        ];
 
         profiles = {
             ${username} = {
