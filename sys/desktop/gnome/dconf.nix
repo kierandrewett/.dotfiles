@@ -44,6 +44,10 @@
                 "org/gnome/system/location" = {
                     enabled = true;
                 };
+
+                "org/gnome/desktop/interface" = {
+                    monospace-font-name = "Geist Mono";
+                };
             };
         }
     ];
