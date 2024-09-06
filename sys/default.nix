@@ -16,6 +16,7 @@
         inputs.disko.nixosModules.disko
 
         ./apps/all.nix
+        ./config
         ./machines/${hostname}
         ./desktop/${desktop}
         ./features
