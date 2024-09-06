@@ -16,7 +16,7 @@ in
 
         inherit package;
 
-        nativeMessagingHosts = with pkgs; [
+        nativeMessagingHosts.packages = with pkgs; [
             (lib.optional (desktop == "gnome") gnome-browser-connector)
         ];
 
