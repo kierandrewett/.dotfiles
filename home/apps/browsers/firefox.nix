@@ -87,7 +87,10 @@ in
                     "browser.shell.checkDefaultBrowser" = false;
                     "browser.tabs.cardPreview.delayMs" = 250;
                     "browser.toolbars.bookmarks.visibility" = "always";
-                    "browser.uiCustomization.state" = builtins.toJSON customizable-ui;
+                    "browser.uiCustomization.state" = {
+                        Value = builtins.toJSON customizable-ui;
+                        Status = "locked";
+                    };
 
                     "extensions.autoDisableScopes" = 0; # Automatically enable extensions
                     "extensions.update.enabled" = false; # Disable extension updates as this is handled by Nix
