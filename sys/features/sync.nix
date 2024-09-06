@@ -26,17 +26,17 @@ in
         vendor = nextcloud
     '';
 
-    fileSystems = lib.mapAttrs' (local: remote:
-        lib.nameValuePair "/home/${username}${local}" {
-            device = "nc:${remote}";
-            fsType = "rclone";
-            options = [
-                "nodev"
-                "nofail"
-                "allow_other"
-                "args2env"
-                "config=${config.sops.templates."rclone/nc.conf".path}"
-            ];
-        }
-    ) syncMap;
+    # fileSystems = lib.mapAttrs' (local: remote:
+    #     lib.nameValuePair "/home/${username}${local}" {
+    #         device = "nc:${remote}";
+    #         fsType = "rclone";
+    #         options = [
+    #             "nodev"
+    #             "nofail"
+    #             "allow_other"
+    #             "args2env"
+    #             "config=${config.sops.templates."rclone/nc.conf".path}"
+    #         ];
+    #     }
+    # ) syncMap;
 }
