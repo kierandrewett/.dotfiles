@@ -12,10 +12,6 @@ let
     };
 in
 {
-    home.packages = with pkgs; [
-        rclone
-    ];
-
     # Nextcloud Sync
     sops.templates."rclone/nc.conf".content = ''
         [nc]
@@ -27,18 +23,4 @@ in
     '';
 
     home.file.".config/rclone/nc.conf".source = config.sops.templates."rclone/nc.conf".path;
-
-    fileSystems = lib.mapAttrs' (local: remote:
-        lib.nameValuePair "/home/${username}${local}" {
-            device = "nc:${remote}";
-            fsType = "rclone";
-            options = [
-                "nodev"
-                "nofail"
-                "allow_other"
-                "args2env"
-                "config=${config.home.file.".config/rclone/nc.conf".path}"
-            ];
-        }
-    ) syncDriveMounts;
 }
