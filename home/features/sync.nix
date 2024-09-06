@@ -13,15 +13,14 @@
         };
         Service = {
             ExecStart = "${pkgs.writeShellScript "rclone-sync" ''
-                #!/run/current-system/sw/bin/bash
-                RSYNC_URL=$(cat ${config.sops.secrets."sync/nc/url".path})
-                RSYNC_USER=$(cat ${config.sops.secrets."sync/nc/username".path})
-                RSYNC_PASS=$(cat ${config.sops.secrets."sync/nc/password".path})
+                RCLONE_URL=$(cat ${config.sops.secrets."sync/nc/url".path})
+                RCLONE_USER=$(cat ${config.sops.secrets."sync/nc/username".path})
+                RCLONE_PASS=$(cat ${config.sops.secrets."sync/nc/password".path})
 
-                rsync \
-                    --webdav-url $RSYNC_URL \
-                    --webdav-user $RSYNC_USER \
-                    --webdav-pass $RSYNC_PASS \
+                rclone \
+                    --webdav-url $RCLONE_URL \
+                    --webdav-user $RCLONE_USER \
+                    --webdav-pass $RCLONE_PASS \
                     --webdav-vendor nextcloud \
                     bisync \
                     nc:/ \
