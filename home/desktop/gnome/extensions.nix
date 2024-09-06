@@ -31,7 +31,8 @@ with pkgs.gnomeExtensions; {
 
         "org/gnome/shell/extensions/color-picker" = lib.mkIf (lib.elem color-picker extensions) {
             enable-shortcut = true;
-            color-picker-shortcut = "['<Super>comma']";
+            enable-systray = false;
+            color-picker-shortcut = [ "<Super>comma" ];
         };
 
         "org/gnome/shell/extensions/dash-to-dock" = lib.mkIf (lib.elem dash-to-dock extensions) {
