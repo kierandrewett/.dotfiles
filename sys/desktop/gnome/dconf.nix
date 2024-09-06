@@ -7,6 +7,8 @@
     # Main GNOME profile
     programs.dconf.profiles.user.databases = [
         {
+            lockAll = true;
+
             settings = {
                 "org/gnome/desktop/input-sources" = {
                     sources = [
