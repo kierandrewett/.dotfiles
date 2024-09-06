@@ -14,7 +14,7 @@ let
         ];
     };
 
-    customizable-ui = {
+    customizable-ui = builtins.toJSON {
         placements = {
             unified-extensions-area = [];
             nav-bar = [
@@ -100,7 +100,7 @@ in
                 };
 
                 extraConfig = ''
-                    lockPref("browser.uiCustomization.state", "${builtins.toJSON customizable-ui}");
+                    lockPref("browser.uiCustomization.state", ${builtins.toJSON customizable-ui});
                 '';
             };
         };
