@@ -12,6 +12,8 @@ let
     rclone-fs = name: remote: local: {
         Unit = {
             Description = "Mounts the remote ${name} FUSE filesystem.";
+            StartLimitIntervalSec = 10;
+            StartLimitBurst = 1000;
         };
 
         Install = {
@@ -55,6 +57,7 @@ let
             ];
 
             Restart = "on-failure";
+            RestartSec = "1s";
         };
     };
 
