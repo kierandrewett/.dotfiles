@@ -10,8 +10,11 @@ let
     rclone-fs = name: remote: local: {
         Unit = {
             Description = "Mounts the remote ${name} FUSE filesystem.";
-            After = [ "network-online.target" ];
-            Wants = [ "network-online.target" ];
+            Requires = [ "network-online.target" "xdg-desktop-autostart.target" ];
+        };
+
+        Install = {
+            WantedBy = [ "multi-user.target" ];
         };
 
         Service = {
