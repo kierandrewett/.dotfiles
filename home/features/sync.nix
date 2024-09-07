@@ -5,7 +5,7 @@
     ...
 }:
 let
-    rclone-fs = name: localMount: remoteMount: {
+    rclone-fs = name: local: remote: {
         Unit = {
             Description = "Mounts the remote ${name} FUSE filesystem.";
             After = [ "network-online.target" ];
@@ -13,7 +13,7 @@ let
         };
 
         Service = {
-            ExecStartPre = ''
+            ExecStartPre = "${pkgs.writeShellScript "rclone-mount-${name}-pre" ''
                 ${pkgs.coreutils}/bin/cat > /tmp/rclone-${name}.conf << EOF
                 [${name}]
                 type = $(${pkgs.coreutils}/bin/cat ${config.sops.secrets."sync/${name}/type".path})
@@ -22,9 +22,9 @@ let
                 pass = $(${pkgs.coreutils}/bin/cat ${config.sops.secrets."sync/${name}/password".path})
                 vendor = $(${pkgs.coreutils}/bin/cat ${config.sops.secrets."sync/${name}/vendor".path})
                 EOF
-            '';
+            ''}";
 
-            ExecStart = ''
+            ExecStart = "${pkgs.writeShellScript "rclone-mount-${name}-start" ''
                 ${pkgs.rclone}/bin/rclone mount \
                     --config /tmp/rclone-${name}.conf \
                     --dir-cache-time 168h \
@@ -37,8 +37,8 @@ let
                     --timeout 10m \
                     --transfers 16 \
                     --checkers 12 \
-                    ${name}:${remoteMount} ${localMount}
-            '';
+                    ${name}:${remote} ${local}
+            ''}";
 
             Environment = [
                 "PATH=/run/wrappers/bin/:$PATH"
