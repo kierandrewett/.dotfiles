@@ -22,7 +22,6 @@ in
             Description = "Mounts the remote rclone synchronised drive.";
             After = [ "network-online.target" ];
         };
-        Install.WantedBy = [ "multi-user.target" ];
         Service = {
             ExecStartPre = "${pkgs.writeShellScript "rclone-prepare" ''
                 /run/wrappers/bin/fusermount -zu ${mountDir}
@@ -67,7 +66,6 @@ in
             Description = "Mounts the remote synchronised directories to the home directory.";
             After = [ "network-online.target" ];
         };
-        Install.WantedBy = [ "multi-user.target" ];
         Service = {
             ExecStart = "${pkgs.writeShellScript "home-remote-mount" (lib.concatStringsSep "\n" (lib.mapAttrsToList (local: remote: ''
                 if [ ! -d "${mountDir}" ]; then
