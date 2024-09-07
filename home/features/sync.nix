@@ -1,4 +1,5 @@
 {
+    inputs,
     pkgs,
     config,
     lib,
@@ -66,5 +67,7 @@ in
 
     systemd.user.services.rclone-nc = rclone-fs "nc" "/" ncMountDir;
 
-    home.file."Documents".source = config.lib.file.mkOutOfStoreSymlink "/home/${username}/Nextcloud/Documents";
+    _ = pkgs.runCommand "write-homedir-symlinks" {} ''
+        ln -s /home/${username}/Nextcloud/Documents /home/${username}/Documents
+    '';
 }
