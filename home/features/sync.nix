@@ -31,9 +31,8 @@ in
                 vendor = nextcloud
                 EOF
 
-                RCLONE_CONFIG=/tmp/rclone-nc.conf
-
-                rclone mount nc: ${mountDir} \
+                rclone --config /tmp/rclone-nc.conf \
+                    mount nc: ${mountDir} \
                     --dir-cache-time 48h \
                     --vfs-cache-mode full \
                     --vfs-cache-max-age 48h \
