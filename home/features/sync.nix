@@ -65,6 +65,5 @@ in
 
     systemd.user.services.rclone-nc = rclone-fs "nc" "/" ncMountDir;
 
-    xdg.userDirs.documents = lib.mkForce "${ncMountDir}/Documents";
-    home.file."Documents".source = config.lib.file.mkOutOfStoreSymlink config.xdg.userDirs.documents;
+    home.file."Documents".source = config.lib.file.mkOutOfStoreSymlink "${ncMountDir}/Documents";
 }

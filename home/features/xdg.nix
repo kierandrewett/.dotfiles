@@ -8,6 +8,8 @@
     xdg = {
         userDirs = {
             enable = true;
+
+            documents = lib.mkForce "${config.home.homeDirectory}/Documents";
         };
 
         mimeApps.defaultApplications = {
