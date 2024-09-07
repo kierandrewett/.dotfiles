@@ -67,7 +67,7 @@ in
         };
         Service = {
             ExecStart = "${pkgs.writeShellScript "home-remote-mount" (lib.concatStringsSep "\n" (lib.mapAttrsToList (local: remote: ''
-                if [[ ! $(findmnt -M "${mountDir}") ]]; then
+                if [[ ! $(${pkgs.util-linux}/bin/findmnt -M "${mountDir}") ]]; then
                     exit 1
                 fi
 
