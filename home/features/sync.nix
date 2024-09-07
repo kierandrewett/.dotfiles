@@ -10,7 +10,6 @@ let
     rclone-fs = name: remote: local: {
         Unit = {
             Description = "Mounts the remote ${name} FUSE filesystem.";
-            Requires = [ "network-online.target" ];
         };
 
         Install = {
