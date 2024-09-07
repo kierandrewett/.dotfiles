@@ -1,10 +1,16 @@
 {
     pkgs,
     config,
+    lib,
     ...
 }:
 let
     mountDir = "${config.home.homeDirectory}/Sync";
+
+    homeMounts = {
+        # Local path <=> Remote path
+        "/Documents" = "/Documents";
+    };
 in
 {
     home.packages = with pkgs; [
@@ -51,6 +57,32 @@ in
             ExecStop = "${pkgs.writeShellScript "rclone-umount" ''
                 /run/wrappers/bin/fusermount -zu ${mountDir}
             ''}";
+            Type = "simple";
+            Restart = "on-failure";
+            RestartSec = "10s";
+            Environment = [
+                "PATH=/run/wrappers/bin/:$PATH"
+            ];
+        };
+    };
+
+    systemd.user.services.home-remote-mounts = {
+        Unit = {
+            Description = "Mounts the remote synchronised directories to the home directory.";
+            After = [ "rclone-mount.service" ];
+        };
+        Install.WantedBy = [ "multi-user.target" ];
+        Service = {
+            ExecStart = "${pkgs.writeShellScript "home-remote-mount" (lib.concatStringsSep "\n" (lib.mapAttrsToList (local: remote: ''
+                if [ -L "${config.home.homeDirectory}${local}" ]; then
+                    rm -r "${config.home.homeDirectory}${local}"
+                fi
+                ln -sf "${mountDir}${remote}/" "${config.home.homeDirectory}${local}"
+            '') homeMounts))}";
+            ExecStop = "${pkgs.writeShellScript "rclone-umount" (lib.concatStringsSep "\n" (lib.mapAttrsToList (local: remote: ''
+                rm -r "${config.home.homeDirectory}${local}"
+                mkdir -p "${config.home.homeDirectory}${local}"
+            '') homeMounts))}";
             Type = "simple";
             Restart = "on-failure";
             RestartSec = "10s";
