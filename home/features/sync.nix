@@ -25,6 +25,7 @@ in
         Install.WantedBy = [ "multi-user.target" ];
         Service = {
             ExecStartPre = "${pkgs.writeShellScript "rclone-prepare" ''
+                /run/wrappers/bin/fusermount -zu ${mountDir}
                 ${pkgs.coreutils}/bin/rm -rf ${mountDir}
                 ${pkgs.coreutils}/bin/mkdir -p ${mountDir}
             ''}";
@@ -52,13 +53,9 @@ in
                     --checkers 12 \
                     -v
             ''}";
-            ExecStop = "${pkgs.writeShellScript "rclone-umount" ''
-                /run/wrappers/bin/fusermount -zu ${mountDir}
-                ${pkgs.coreutils}/bin/rm -rf ${mountDir}
-            ''}";
             Type = "simple";
-            Restart = "always";
-            RestartSec = "10s";
+            Restart = "on-failure";
+            RestartSec = "2s";
             Environment = [
                 "PATH=/run/wrappers/bin/:$PATH"
             ];
@@ -81,10 +78,9 @@ in
             '') homeMounts))}";
             ExecStop = "${pkgs.writeShellScript "home-remote-umount" (lib.concatStringsSep "\n" (lib.mapAttrsToList (local: remote: ''
                 ${pkgs.coreutils}/bin/rm -r "${config.home.homeDirectory}${local}"
-                ${pkgs.coreutils}/bin/mkdir -p "${config.home.homeDirectory}${local}"
             '') homeMounts))}";
             Type = "simple";
-            Restart = "always";
+            Restart = "on-failure";
             RestartSec = "2s";
             Environment = [
                 "PATH=/run/wrappers/bin/:$PATH"
