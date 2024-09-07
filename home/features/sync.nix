@@ -55,14 +55,16 @@ let
             Restart = "on-failure";
         };
     };
+
+    ncMountDir = "${homeDir}/Nextcloud";
 in
 {
     home.packages = with pkgs; [
         rclone
     ];
 
-    systemd.user.services.rclone-nc = rclone-fs "nc" "/" "${homeDir}/Nextcloud";
+    systemd.user.services.rclone-nc = rclone-fs "nc" "/" ncMountDir;
 
-    xdg.userDirs.documents = lib.mkForce "${config.home.homeDirectory}/Nextcloud/Documents";
+    xdg.userDirs.documents = lib.mkForce "${ncMountDir}/Documents";
     home.file."Documents".source = config.lib.file.mkOutOfStoreSymlink config.xdg.userDirs.documents;
 }
