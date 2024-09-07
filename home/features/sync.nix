@@ -27,6 +27,10 @@ let
             ''}";
 
             ExecStart = "${pkgs.writeShellScript "rclone-mount-${name}-start" ''
+                if [ ! -d "${local}" ]; then
+                    ${pkgs.coreutils}/bin/mkdir -p ${local}
+                fi
+
                 ${pkgs.rclone}/bin/rclone mount \
                     --config /tmp/rclone-${name}.conf \
                     --dir-cache-time 168h \
