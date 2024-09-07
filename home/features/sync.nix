@@ -71,7 +71,7 @@ in
         Install.WantedBy = [ "multi-user.target" ];
         Service = {
             ExecStart = "${pkgs.writeShellScript "home-remote-mount" (lib.concatStringsSep "\n" (lib.mapAttrsToList (local: remote: ''
-                if [ -L "${config.home.homeDirectory}${local}" ]; then
+                if [ -d "${config.home.homeDirectory}${local}" ]; then
                     ${pkgs.coreutils}/bin/rm -r "${config.home.homeDirectory}${local}"
                 fi
                 ${pkgs.coreutils}/bin/ln -sf "${mountDir}${remote}/" "${config.home.homeDirectory}${local}"
