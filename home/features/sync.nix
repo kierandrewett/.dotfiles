@@ -5,41 +5,28 @@
     ...
 }:
 let
-    mountDir = "${config.home.homeDirectory}/Sync";
-
-    homeMounts = {
-        # Local path <=> Remote path
-        "/Documents" = "/Documents";
-    };
-in
-{
-    home.packages = with pkgs; [
-        rclone
-    ];
-
-    systemd.user.services.rclone-mount = {
+    rclone-fs = name: localMount: remoteMount: {
         Unit = {
-            Description = "Mounts the remote rclone synchronised drive.";
+            Description = "Mounts the remote ${name} FUSE filesystem.";
             After = [ "network-online.target" ];
+            Wants = [ "network-online.target" ];
         };
-        Service = {
-            ExecStartPre = "${pkgs.writeShellScript "rclone-prepare" ''
-                /run/wrappers/bin/fusermount -zu ${mountDir}
-                ${pkgs.coreutils}/bin/rm -rf ${mountDir}
-                ${pkgs.coreutils}/bin/mkdir -p ${mountDir}
-            ''}";
-            ExecStart = "${pkgs.writeShellScript "rclone-mount-drv" ''
-                ${pkgs.coreutils}/bin/cat > /tmp/rclone-nc.conf << EOF
-                [nc]
-                type = webdav
-                url = $(${pkgs.coreutils}/bin/cat ${config.sops.secrets."sync/nc/url".path})
-                user = $(${pkgs.coreutils}/bin/cat ${config.sops.secrets."sync/nc/username".path})
-                pass = $(${pkgs.coreutils}/bin/cat ${config.sops.secrets."sync/nc/password".path})
-                vendor = nextcloud
-                EOF
 
-                ${pkgs.rclone}/bin/rclone --config /tmp/rclone-nc.conf \
-                    mount nc: ${mountDir} \
+        Service = {
+            ExecStartPre = ''
+                ${pkgs.coreutils}/bin/cat > /tmp/rclone-${name}.conf << EOF
+                [${name}]
+                type = $(${pkgs.coreutils}/bin/cat ${config.sops.secrets."sync/${name}/type".path})
+                url = $(${pkgs.coreutils}/bin/cat ${config.sops.secrets."sync/${name}/url".path})
+                user = $(${pkgs.coreutils}/bin/cat ${config.sops.secrets."sync/${name}/username".path})
+                pass = $(${pkgs.coreutils}/bin/cat ${config.sops.secrets."sync/${name}/password".path})
+                vendor = $(${pkgs.coreutils}/bin/cat ${config.sops.secrets."sync/${name}/vendor".path})
+                EOF
+            '';
+
+            ExecStart = ''
+                ${pkgs.rclone}/bin/rclone mount \
+                    --config /tmp/rclone-nc.conf \
                     --dir-cache-time 168h \
                     --vfs-cache-mode full \
                     --vfs-cache-max-age 168h \
@@ -50,41 +37,20 @@ in
                     --timeout 10m \
                     --transfers 16 \
                     --checkers 12 \
-                    -v
-            ''}";
-            Type = "simple";
-            Restart = "on-failure";
-            RestartSec = "2s";
+                    ${name}:${remoteMount} ${localMount}
+            '';
+
             Environment = [
                 "PATH=/run/wrappers/bin/:$PATH"
             ];
         };
     };
+in
+{
+    home.packages = with pkgs; [
+        rclone
+    ];
 
-    systemd.user.services.home-remote-mounts = {
-        Unit = {
-            Description = "Mounts the remote synchronised directories to the home directory.";
-        };
-        Service = {
-            ExecStart = "${pkgs.writeShellScript "home-remote-mount" (lib.concatStringsSep "\n" (lib.mapAttrsToList (local: remote: ''
-                if [[ ! $(${pkgs.util-linux}/bin/findmnt -M "${mountDir}") ]]; then
-                    exit 1
-                fi
-
-                if [ -d "${config.home.homeDirectory}${local}" ]; then
-                    ${pkgs.coreutils}/bin/rm -r "${config.home.homeDirectory}${local}"
-                fi
-                ${pkgs.coreutils}/bin/ln -sf "${mountDir}${remote}/" "${config.home.homeDirectory}${local}"
-            '') homeMounts))}";
-            ExecStop = "${pkgs.writeShellScript "home-remote-umount" (lib.concatStringsSep "\n" (lib.mapAttrsToList (local: remote: ''
-                ${pkgs.coreutils}/bin/rm -r "${config.home.homeDirectory}${local}"
-            '') homeMounts))}";
-            Type = "simple";
-            Restart = "on-failure";
-            RestartSec = "2s";
-            Environment = [
-                "PATH=/run/wrappers/bin/:$PATH"
-            ];
-        };
-    };
+    systemd.user.services.rclone-nc = rclone-fs "nc" "/" "%h/Sync";
+    systemd.user.services.rclone-nc-documents = rclone-fs "nc" "/Documents" "%h/Documents";
 }
