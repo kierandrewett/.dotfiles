@@ -57,7 +57,7 @@ in
                 ${pkgs.coreutils}/bin/rm -rf ${mountDir}
             ''}";
             Type = "simple";
-            Restart = "on-failure";
+            Restart = "always";
             RestartSec = "10s";
             Environment = [
                 "PATH=/run/wrappers/bin/:$PATH"
@@ -84,7 +84,7 @@ in
                 ${pkgs.coreutils}/bin/mkdir -p "${config.home.homeDirectory}${local}"
             '') homeMounts))}";
             Type = "simple";
-            Restart = "on-failure";
+            Restart = "always";
             RestartSec = "2s";
             Environment = [
                 "PATH=/run/wrappers/bin/:$PATH"
