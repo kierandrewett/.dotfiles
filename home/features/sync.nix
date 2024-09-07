@@ -64,11 +64,10 @@ in
     systemd.user.services.home-remote-mounts = {
         Unit = {
             Description = "Mounts the remote synchronised directories to the home directory.";
-            After = [ "network-online.target" ];
         };
         Service = {
             ExecStart = "${pkgs.writeShellScript "home-remote-mount" (lib.concatStringsSep "\n" (lib.mapAttrsToList (local: remote: ''
-                if [ ! -d "${mountDir}" ]; then
+                if [[ ! $(findmnt -M "${mountDir}") ]]; then
                     exit 1
                 fi
 
