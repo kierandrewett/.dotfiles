@@ -49,6 +49,7 @@ let
                     --timeout 10m \
                     --transfers 16 \
                     --checkers 12 \
+                    --log-file ${homeDir}/.config/rclone/${name}.log \
                     ${name}:${remote} ${local}
             ''}";
 
