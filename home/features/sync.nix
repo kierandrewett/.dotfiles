@@ -2,6 +2,7 @@
     pkgs,
     config,
     lib,
+    username,
     ...
 }:
 let
@@ -65,5 +66,5 @@ in
 
     systemd.user.services.rclone-nc = rclone-fs "nc" "/" ncMountDir;
 
-    home.file."Documents".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Nextcloud/Documents";
+    home.file."Documents".source = config.lib.file.mkOutOfStoreSymlink "/home/${username}/Nextcloud/Documents";
 }
