@@ -46,7 +46,7 @@ in
             ''}";
             Type = "notify";
             Restart = "always";
-            RestartSec = "30s";
+            RestartSec = "2s";
         };
     };
 }
