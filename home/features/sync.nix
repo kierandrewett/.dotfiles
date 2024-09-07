@@ -5,7 +5,9 @@
     ...
 }:
 let
-    rclone-fs = name: local: remote: {
+    homeDir = config.home.homeDirectory;
+
+    rclone-fs = name: remote: local: {
         Unit = {
             Description = "Mounts the remote ${name} FUSE filesystem.";
             After = [ "network-online.target" ];
@@ -51,6 +53,6 @@ in
         rclone
     ];
 
-    systemd.user.services.rclone-nc = rclone-fs "nc" "/" "%h/Sync";
-    systemd.user.services.rclone-nc-documents = rclone-fs "nc" "/Documents" "%h/Documents";
+    systemd.user.services.rclone-nc = rclone-fs "nc" "/" "${homeDir}/Sync";
+    systemd.user.services.rclone-nc-documents = rclone-fs "nc" "/Documents" "${homeDir}/Documents";
 }
