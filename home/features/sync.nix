@@ -61,5 +61,8 @@ in
         rclone
     ];
 
-    systemd.user.services.rclone-nc = rclone-fs "nc" "/" "${homeDir}/Sync";
+    systemd.user.services.rclone-nc = rclone-fs "nc" "/" "${homeDir}/Nextcloud";
+
+    xdg.userDirs.documents = lib.mkForce "${config.home.homeDirectory}/Nextcloud/Documents";
+    home.file."Documents".source = config.lib.file.mkOutOfStoreSymlink config.xdg.userDirs.documents;
 }
