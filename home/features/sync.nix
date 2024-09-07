@@ -51,6 +51,8 @@ let
             Environment = [
                 "PATH=/run/wrappers/bin/:$PATH"
             ];
+
+            Restart = "on-failure";
         };
     };
 in
