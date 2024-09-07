@@ -17,9 +17,6 @@ in
         rclone
     ];
 
-    home.file."${config.xdg.dataHome}/Documents".source = (config.lib.file.mkOutOfStoreSymlink
-        "${config.home.homeDirectory}/Sync/Documents");
-
     systemd.user.services.rclone-mount = {
         Unit = {
             Description = "Mounts the remote rclone synchronised drive.";
@@ -79,7 +76,7 @@ in
                 fi
                 ln -sf "${mountDir}${remote}/" "${config.home.homeDirectory}${local}"
             '') homeMounts))}";
-            ExecStop = "${pkgs.writeShellScript "rclone-umount" (lib.concatStringsSep "\n" (lib.mapAttrsToList (local: remote: ''
+            ExecStop = "${pkgs.writeShellScript "home-remote-umount" (lib.concatStringsSep "\n" (lib.mapAttrsToList (local: remote: ''
                 rm -r "${config.home.homeDirectory}${local}"
                 mkdir -p "${config.home.homeDirectory}${local}"
             '') homeMounts))}";
