@@ -26,7 +26,7 @@ let
 
             ExecStart = ''
                 ${pkgs.rclone}/bin/rclone mount \
-                    --config /tmp/rclone-nc.conf \
+                    --config /tmp/rclone-${name}.conf \
                     --dir-cache-time 168h \
                     --vfs-cache-mode full \
                     --vfs-cache-max-age 168h \
