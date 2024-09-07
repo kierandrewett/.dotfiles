@@ -66,11 +66,14 @@ in
         Unit = {
             Description = "Mounts the remote synchronised directories to the home directory.";
             After = [ "network-online.target" ];
-            ConditionPathExists = mountDir;
         };
         Install.WantedBy = [ "multi-user.target" ];
         Service = {
-            ExecStart = "${pkgs.writeShellScript "home-remote-umount" (lib.concatStringsSep "\n" (lib.mapAttrsToList (local: remote: ''
+            ExecStart = "${pkgs.writeShellScript "home-remote-mount" (lib.concatStringsSep "\n" (lib.mapAttrsToList (local: remote: ''
+                if [ ! -d "${mountDir}" ]; then
+                    exit 1
+                fi
+
                 if [ -d "${config.home.homeDirectory}${local}" ]; then
                     ${pkgs.coreutils}/bin/rm -r "${config.home.homeDirectory}${local}"
                 fi
