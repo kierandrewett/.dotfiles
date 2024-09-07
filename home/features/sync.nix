@@ -10,7 +10,7 @@ let
     rclone-fs = name: remote: local: {
         Unit = {
             Description = "Mounts the remote ${name} FUSE filesystem.";
-            Requires = [ "network-online.target" "xdg-desktop-autostart.target" ];
+            Requires = [ "network-online.target" ];
         };
 
         Install = {
@@ -61,5 +61,4 @@ in
     ];
 
     systemd.user.services.rclone-nc = rclone-fs "nc" "/" "${homeDir}/Sync";
-    systemd.user.services.rclone-nc-documents = rclone-fs "nc" "/Documents" "${homeDir}/Documents";
 }

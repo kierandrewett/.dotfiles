@@ -1,9 +1,15 @@
 {
     pkgs,
+    lib,
+    config,
     ...
 }:
 {
     xdg = {
+        userDirs = {
+            documents = lib.mkForce "${config.home.homeDirectory}/Sync/Documents";
+        };
+
         mimeApps.defaultApplications = {
             # Internet Browsers
             "text/html" = "firefox.desktop";
