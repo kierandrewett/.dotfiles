@@ -33,27 +33,22 @@ in
 
                 ${pkgs.rclone}/bin/rclone --config /tmp/rclone-nc.conf \
                     mount nc: ${mountDir} \
-                    --fast-list \
                     --dir-cache-time 168h \
                     --vfs-cache-mode full \
                     --vfs-cache-max-age 168h \
                     --vfs-read-chunk-size 64M \
                     --vfs-read-chunk-size-limit 2048M \
                     --max-read-ahead 256M \
-                    --poll-interval 1m \
-                    --no-modtime \
                     --buffer-size 512M \
                     --timeout 10m \
                     --transfers 16 \
                     --checkers 12 \
-                    --fuse-flag=sync_read \
-                    --fuse-flag=auto_cache \
                     -v
             ''}";
             ExecStop = "${pkgs.writeShellScript "rclone-umount" ''
                 /run/wrappers/bin/fusermount -zu ${mountDir}
             ''}";
-            Type = "notify";
+            Type = "simple";
             Restart = "on-failure";
             RestartSec = "10s";
             Environment = [
