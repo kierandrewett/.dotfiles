@@ -11,6 +11,9 @@ in
         rclone
     ];
 
+    home.file."${config.xdg.dataHome}/Documents".source = (config.lib.file.mkOutOfStoreSymlink
+        "${config.home.homeDirectory}/Sync/Documents");
+
     systemd.user.services.rclone-mount = {
         Unit = {
             Description = "Mounts the remote rclone synchronised drive.";
