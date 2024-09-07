@@ -72,13 +72,13 @@ in
         Service = {
             ExecStart = "${pkgs.writeShellScript "home-remote-mount" (lib.concatStringsSep "\n" (lib.mapAttrsToList (local: remote: ''
                 if [ -L "${config.home.homeDirectory}${local}" ]; then
-                    rm -r "${config.home.homeDirectory}${local}"
+                    ${pkgs.coreutils}/bin/rm -r "${config.home.homeDirectory}${local}"
                 fi
-                ln -sf "${mountDir}${remote}/" "${config.home.homeDirectory}${local}"
+                ${pkgs.coreutils}/bin/ln -sf "${mountDir}${remote}/" "${config.home.homeDirectory}${local}"
             '') homeMounts))}";
             ExecStop = "${pkgs.writeShellScript "home-remote-umount" (lib.concatStringsSep "\n" (lib.mapAttrsToList (local: remote: ''
-                rm -r "${config.home.homeDirectory}${local}"
-                mkdir -p "${config.home.homeDirectory}${local}"
+                ${pkgs.coreutils}/bin/rm -r "${config.home.homeDirectory}${local}"
+                ${pkgs.coreutils}/bin/mkdir -p "${config.home.homeDirectory}${local}"
             '') homeMounts))}";
             Type = "simple";
             Restart = "on-failure";
