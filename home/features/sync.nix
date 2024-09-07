@@ -19,7 +19,7 @@ in
         Install.WantedBy = [ "multi-user.target" ];
         Service = {
             ExecStartPre = "${pkgs.writeShellScript "rclone-prepare" ''
-                mkdir -p ${mountDir}
+                ${pkgs.coreutils}/bin/mkdir -p ${mountDir}
             ''}";
             ExecStart = "${pkgs.writeShellScript "rclone-mount-drv" ''
                 cat > /tmp/rclone-nc.conf << EOF
