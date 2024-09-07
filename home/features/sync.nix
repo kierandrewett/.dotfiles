@@ -55,7 +55,7 @@ in
             ''}";
             Type = "notify";
             Restart = "on-failure";
-            RestartSec = "2s";
+            RestartSec = "10s";
             Environment = [
                 "PATH=/run/wrappers/bin/:$PATH"
             ];
