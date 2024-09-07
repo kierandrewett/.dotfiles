@@ -77,9 +77,11 @@ in
             WantedBy = [ "multi-user.target" ];
         };
 
-        ExecStart = "${pkgs.writeShellScript "xdg-homedirs-link" ''
-            rm -rf /home/${username}/Documents
-            ln -s /home/${username}/Nextcloud/Documents /home/${username}/Documents
-        ''}";
+        Service = {
+            ExecStart = "${pkgs.writeShellScript "xdg-homedirs-link" ''
+                rm -rf /home/${username}/Documents
+                ln -s /home/${username}/Nextcloud/Documents /home/${username}/Documents
+            ''}";
+        };
     };
 }
