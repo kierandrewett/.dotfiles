@@ -50,36 +50,22 @@ in
                     --transfers 16 \
                     --checkers 12 \
                     -v
+
+                ${pkgs.writeShellScript "home-remote-mount" (lib.concatStringsSep "\n" (lib.mapAttrsToList (local: remote: ''
+                    if [ -d "${config.home.homeDirectory}${local}" ]; then
+                        ${pkgs.coreutils}/bin/rm -r "${config.home.homeDirectory}${local}"
+                    fi
+                    ${pkgs.coreutils}/bin/ln -sf "${mountDir}${remote}/" "${config.home.homeDirectory}${local}"
+                '') homeMounts))}
             ''}";
             ExecStop = "${pkgs.writeShellScript "rclone-umount" ''
                 /run/wrappers/bin/fusermount -zu ${mountDir}
-            ''}";
-            Type = "simple";
-            Restart = "on-failure";
-            RestartSec = "10s";
-            Environment = [
-                "PATH=/run/wrappers/bin/:$PATH"
-            ];
-        };
-    };
 
-    systemd.user.services.home-remote-mounts = {
-        Unit = {
-            Description = "Mounts the remote synchronised directories to the home directory.";
-            After = [ "rclone-mount.service" ];
-        };
-        Install.WantedBy = [ "multi-user.target" ];
-        Service = {
-            ExecStart = "${pkgs.writeShellScript "home-remote-mount" (lib.concatStringsSep "\n" (lib.mapAttrsToList (local: remote: ''
-                if [ -d "${config.home.homeDirectory}${local}" ]; then
+                ${pkgs.writeShellScript "home-remote-umount" (lib.concatStringsSep "\n" (lib.mapAttrsToList (local: remote: ''
                     ${pkgs.coreutils}/bin/rm -r "${config.home.homeDirectory}${local}"
-                fi
-                ${pkgs.coreutils}/bin/ln -sf "${mountDir}${remote}/" "${config.home.homeDirectory}${local}"
-            '') homeMounts))}";
-            ExecStop = "${pkgs.writeShellScript "home-remote-umount" (lib.concatStringsSep "\n" (lib.mapAttrsToList (local: remote: ''
-                ${pkgs.coreutils}/bin/rm -r "${config.home.homeDirectory}${local}"
-                ${pkgs.coreutils}/bin/mkdir -p "${config.home.homeDirectory}${local}"
-            '') homeMounts))}";
+                    ${pkgs.coreutils}/bin/mkdir -p "${config.home.homeDirectory}${local}"
+                '') homeMounts))}
+            ''}";
             Type = "simple";
             Restart = "on-failure";
             RestartSec = "10s";
