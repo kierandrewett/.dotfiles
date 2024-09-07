@@ -51,11 +51,14 @@ in
                     -v
             ''}";
             ExecStop = "${pkgs.writeShellScript "rclone-umount" ''
-                fusermount -u ${mountDir}
+                /run/wrappers/bin/fusermount -zu ${mountDir}
             ''}";
             Type = "notify";
             Restart = "on-failure";
             RestartSec = "2s";
+            Environment = [
+                "PATH=/run/wrappers/bin/:$PATH"
+            ];
         };
     };
 }
