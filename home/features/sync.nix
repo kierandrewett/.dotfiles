@@ -22,16 +22,16 @@ in
                 ${pkgs.coreutils}/bin/mkdir -p ${mountDir}
             ''}";
             ExecStart = "${pkgs.writeShellScript "rclone-mount-drv" ''
-                cat > /tmp/rclone-nc.conf << EOF
+                ${pkgs.coreutils}/bin/cat > /tmp/rclone-nc.conf << EOF
                 [nc]
                 type = webdav
-                url = $(cat ${config.sops.secrets."sync/nc/url".path})
-                user = $(cat ${config.sops.secrets."sync/nc/username".path})
-                pass = $(cat ${config.sops.secrets."sync/nc/password".path})
+                url = $(${pkgs.coreutils}/bin/cat ${config.sops.secrets."sync/nc/url".path})
+                user = $(${pkgs.coreutils}/bin/cat ${config.sops.secrets."sync/nc/username".path})
+                pass = $(${pkgs.coreutils}/bin/cat ${config.sops.secrets."sync/nc/password".path})
                 vendor = nextcloud
                 EOF
 
-                rclone --config /tmp/rclone-nc.conf \
+                ${pkgs.rclone}/bin/rclone --config /tmp/rclone-nc.conf \
                     mount nc: ${mountDir} \
                     --fast-list \
                     --dir-cache-time 168h \
