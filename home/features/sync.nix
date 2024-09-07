@@ -7,6 +7,10 @@ let
     mountDir = "${config.home.homeDirectory}/Sync";
 in
 {
+    home.packages = with pkgs; [
+        rclone
+    ];
+
     systemd.user.services.rclone-mount = {
         Unit = {
             Description = "Mounts the remote rclone synchronised drive.";
