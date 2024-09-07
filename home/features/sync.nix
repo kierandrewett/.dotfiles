@@ -67,7 +67,19 @@ in
 
     systemd.user.services.rclone-nc = rclone-fs "nc" "/" ncMountDir;
 
-    _ = pkgs.runCommand "write-homedir-symlinks" {} ''
-        ln -s /home/${username}/Nextcloud/Documents /home/${username}/Documents
-    '';
+    systemd.user.services.xdg-homedirs-link = {
+        Unit = {
+            Description = "Initialises the symlinks in the homedir.";
+            After = "rclone-nc.service";
+        };
+
+        Install = {
+            WantedBy = [ "multi-user.target" ];
+        };
+
+        ExecStart = "${pkgs.writeShellScript "xdg-homedirs-link" ''
+            rm -rf /home/${username}/Documents
+            ln -s /home/${username}/Nextcloud/Documents /home/${username}/Documents
+        ''}";
+    };
 }
