@@ -50,6 +50,7 @@ let
                     --transfers 16 \
                     --checkers 12 \
                     --log-file ${homeDir}/.config/rclone/${name}.log \
+                    -vv \
                     ${name}:${remote} ${local}
             ''}";
 
