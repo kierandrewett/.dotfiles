@@ -53,5 +53,12 @@ in
         echo "${ncConfig}" > "${ncConfigPath}"
         chown ${config.home.username}:users "${ncConfigPath}"
         chmod 644 "${ncConfigPath}"
+
+        echo "Setup homedir symlinks..."
+        rm -rf ${homeDir}/Documents && ln -s ${mountDir}/Documents ${homeDir}/Documents
+        rm -rf ${homeDir}/Downloads && ln -s ${mountDir}/Downloads ${homeDir}/Downloads
+        rm -rf ${homeDir}/Music && ln -s ${mountDir}/Music ${homeDir}/Music
+        rm -rf ${homeDir}/Pictures && ln -s ${mountDir}/Pictures ${homeDir}/Pictures
+        rm -rf ${homeDir}/Videos && ln -s ${mountDir}/Videos ${homeDir}/Videos
     '';
 }
