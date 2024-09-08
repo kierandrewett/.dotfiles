@@ -1,0 +1,3 @@
+# Exclude browser download part files
+*.part
+*.crdownload

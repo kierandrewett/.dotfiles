@@ -44,6 +44,8 @@ let
         0\Folders\0\localPath=${mountDir};
         0\Folders\0\targetPath=/;
     '';
+
+    xdg.configFile."Nextcloud/sync-exclude.lst".source = ../config/nextcloud/sync-exclude.lst;
 in
 {
     home.packages = with pkgs; [
