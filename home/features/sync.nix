@@ -31,6 +31,8 @@ in
         [General]
         launchOnSystemStartup=true
 
+        ${config.sops.secrets."sync/nc/url".path}
+
         [Accounts]
         0\version=1;
         0\url=${nextcloudUrl};
