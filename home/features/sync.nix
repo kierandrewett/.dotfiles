@@ -66,8 +66,8 @@ in
         chmod 644 "${ncConfigPath}"
 
         echo "Setup homedir symlinks..."
-        ${builtins.concatStringsSep "\n" (map (path: ''
-            rm -rf ${homeDir}${path} && ln -s ${mountDir}${homeDirLinks.${path}} ${homeDir}${path}
+        ${builtins.concatStringsSep "\n" (lib.mapAttrsToList (local: remote: ''
+            rm -rf ${homeDir}${local} && ln -s ${mountDir}${remote} ${homeDir}${local}
         '') homeDirLinks)}
     '';
 }
