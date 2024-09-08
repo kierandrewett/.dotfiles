@@ -60,26 +60,9 @@ let
         ];
     };
 
-    serializeKeyValuePairs = content: builtins.concatStringsSep "\n" (lib.mapAttrsToList (key: value: ''
-        ${toString key}=${toString value}
-    '') content);
-
-    generateCfgSection = name: content: let
-        isList = builtins.isList content;
-        isAttrs = builtins.isAttrs content;
-    in
-    if isAttrs then ''
-        [${name}]
-        ${serializeKeyValuePairs content}
-    ''
-    else if isList then ''
-        [${name}]
-        ${builtins.concatStringsSep "\n\n" (builtins.imap (i: item: let
-        itemContent = serializeKeyValuePairs item;
-        in builtins.concatStringsSep "\n" (itemContent)) content)}
-    '' else "";
-
-    syncCfgData = builtins.concatStringsSep "\n\n" (lib.mapAttrsToList generateCfgSection config);
+    syncCfgData = lib.generators.toINI {
+        listsAsDuplicateKeys = true;
+    } config;
 in
 {
     home.packages = with pkgs; [
