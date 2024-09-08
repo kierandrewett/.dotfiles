@@ -11,8 +11,11 @@ let
 
     mountDir = "${homeDir}/Nextcloud";
 
-    nextcloudUrl = builtins.readFile config.sops.secrets."sync/nc/url".path;
-    nextcloudUser = builtins.readFile config.sops.secrets."sync/nc/username".path;
+    # Really awful that I need to hardcode these.
+    # Until SOPS templating support for home manager
+    # lands this is my only option.
+    nextcloudUrl = "https://nc.kierand.dev";
+    nextcloudUser = "kieran";
 in
 {
     home.packages = with pkgs; [
