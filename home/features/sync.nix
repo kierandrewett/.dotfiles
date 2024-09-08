@@ -87,6 +87,8 @@ in
         Unit = {
             Description = "Initialises the symlinks in the homedir.";
             After = "rclone-nc.service";
+            StartLimitIntervalSec = 1;
+            StartLimitBurst = 1000;
         };
 
         Install = {
@@ -95,9 +97,17 @@ in
 
         Service = {
             ExecStart = "${pkgs.writeShellScript "xdg-homedirs-link" ''
-                rm -rf /home/${username}/Documents
-                ln -s /home/${username}/Nextcloud/Documents /home/${username}/Documents
+                rm -rf ${homeDir}/Documents
+
+                if mountpoint -q ${ncMountDir}; then
+                    ln -s ${ncMountDir}/Documents ${homeDir}/Documents
+                fi
+
+                exit 1
             ''}";
+
+            Restart = "on-failure";
+            RestartSec = "1s";
         };
     };
 }
