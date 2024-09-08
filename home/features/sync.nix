@@ -9,6 +9,15 @@
 let
     homeDir = config.home.homeDirectory;
 
+    homeDirLinks = {
+        # Local path <=> Remote path
+        "/Documents" = "/Documents";
+        "/Downloads" = "/Downloads";
+        "/Music" = "/Music";
+        "/Pictures" = "/Pictures";
+        "/Videos" = "/Videos";
+    };
+
     mountDir = "${homeDir}/Nextcloud";
 
     # Really awful that I need to hardcode these.
@@ -55,10 +64,8 @@ in
         chmod 644 "${ncConfigPath}"
 
         echo "Setup homedir symlinks..."
-        rm -rf ${homeDir}/Documents && ln -s ${mountDir}/Documents ${homeDir}/Documents
-        rm -rf ${homeDir}/Downloads && ln -s ${mountDir}/Downloads ${homeDir}/Downloads
-        rm -rf ${homeDir}/Music && ln -s ${mountDir}/Music ${homeDir}/Music
-        rm -rf ${homeDir}/Pictures && ln -s ${mountDir}/Pictures ${homeDir}/Pictures
-        rm -rf ${homeDir}/Videos && ln -s ${mountDir}/Videos ${homeDir}/Videos
+        ${builtins.concatStringsSep "\n" (map (path: ''
+            rm -rf ${homeDir}${path} && ln -s ${mountDir}${homeDirLinks.${path}} ${homeDir}${path}
+        '') homeDirLinks)}
     '';
 }
