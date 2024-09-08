@@ -53,7 +53,12 @@ let
                     --checkers 12 \
                     --log-file ${homeDir}/.config/rclone/${name}.log \
                     -vv \
-                    ${name}:${remote} ${local}
+                    ${name}:${remote} ${local} &
+
+                RCLONE_PID=$!
+                wait $RCLONE_PID
+
+                exit 1
             ''}";
 
             Environment = [
