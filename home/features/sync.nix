@@ -34,7 +34,7 @@ let
 
             ExecStart = "${pkgs.writeShellScript "rclone-mount-${name}-start" ''
                 if [ ! -d "${local}" ]; then
-                    ${pkgs.coreutils}/bin/mkdir -p ${local} || true
+                    ${pkgs.coreutils}/bin/mkdir -p ${local} > /dev/null 2>&1
                 fi
 
                 /run/wrappers/bin/fusermount -u ${local} || true
@@ -59,6 +59,10 @@ let
                 wait $RCLONE_PID
 
                 exit 1
+            ''}";
+
+            ExecStop = "${pkgs.writeShellScript "rclone-mount-${name}-start" ''
+                /run/wrappers/bin/fusermount -u ${local}
             ''}";
 
             Environment = [
