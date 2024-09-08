@@ -34,8 +34,10 @@ let
 
             ExecStart = "${pkgs.writeShellScript "rclone-mount-${name}-start" ''
                 if [ ! -d "${local}" ]; then
-                    ${pkgs.coreutils}/bin/mkdir -p ${local}
+                    ${pkgs.coreutils}/bin/mkdir -p ${local} || true
                 fi
+
+                /run/wrappers/bin/fusermount -u ${local} || true
 
                 ${pkgs.rclone}/bin/rclone mount \
                     --config /tmp/rclone-${name}.conf \
