@@ -14,8 +14,8 @@ let
 
     mountDir = "${homeDir}/Nextcloud";
 
-    nextcloudUrl = readSecretFile "/run/secrets/sync/nc/url";
-    nextcloudUser = readSecretFile "/run/secrets/sync/nc/username";
+    nextcloudUrl = readSecretFile config.sops.secrets."sync/nc/url".path;
+    nextcloudUser = readSecretFile config.sops.secrets."sync/nc/username".path;
 in
 {
     home.packages = with pkgs; [
