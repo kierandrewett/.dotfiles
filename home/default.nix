@@ -46,11 +46,8 @@
         defaultSopsFile = ../secrets/secrets.yaml;
 
         secrets = {
-            "sync/nc/type" = {};
             "sync/nc/url" = {};
             "sync/nc/username" = {};
-            "sync/nc/password" = {};
-            "sync/nc/vendor" = {};
         };
     };
 }
