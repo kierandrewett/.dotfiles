@@ -97,10 +97,10 @@ in
 
         Service = {
             ExecStart = "${pkgs.writeShellScript "xdg-homedirs-link" ''
-                rm -rf ${homeDir}/Documents
-
                 if mountpoint -q ${ncMountDir}; then
                     ln -s ${ncMountDir}/Documents ${homeDir}/Documents
+                else
+                    mkdir -p ${homeDir}/Documents
                 fi
 
                 exit 1
