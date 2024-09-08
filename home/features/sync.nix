@@ -9,13 +9,10 @@
 let
     homeDir = config.home.homeDirectory;
 
-    readSecretFile = file:
-        lib.optionalString (builtins.pathExists file) (builtins.readFile file);
-
     mountDir = "${homeDir}/Nextcloud";
 
-    nextcloudUrl = readSecretFile config.sops.secrets."sync/nc/url".path;
-    nextcloudUser = readSecretFile config.sops.secrets."sync/nc/username".path;
+    nextcloudUrl = builtins.readFile config.sops.secrets."sync/nc/url".path;
+    nextcloudUser = builtins.readFile config.sops.secrets."sync/nc/username".path;
 in
 {
     home.packages = with pkgs; [
@@ -30,8 +27,6 @@ in
     xdg.configFile."Nextcloud/nextcloud.cfg".text = ''
         [General]
         launchOnSystemStartup=true
-
-        ${config.sops.secrets."sync/nc/url".path}
 
         [Accounts]
         0\version=1;
