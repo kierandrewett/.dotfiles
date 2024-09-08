@@ -16,53 +16,6 @@ let
 
     nextcloudUrl = readSecretFile "/run/secrets/sync/nc/url";
     nextcloudUser = readSecretFile "/run/secrets/sync/nc/username";
-
-    config = {
-        General = {
-            launchOnSystemStartup = true;
-        };
-
-        Accounts = [
-            {
-                version = 1;
-                url = nextcloudUrl;
-                authType = "webflow";
-                webflow_user = nextcloudUser;
-                dav_user = nextcloudUser;
-                Folders = [
-                    {
-                        version = 2;
-                        localPath = config.xdg.userDirs.documents;
-                        targetPath = "/Documents";
-                    }
-                    {
-                        version = 2;
-                        localPath = config.xdg.userDirs.download;
-                        targetPath = "/Downloads";
-                    }
-                    {
-                        version = 2;
-                        localPath = config.xdg.userDirs.music;
-                        targetPath = "/Music";
-                    }
-                    {
-                        version = 2;
-                        localPath = config.xdg.userDirs.pictures;
-                        targetPath = "/Pictures";
-                    }
-                    {
-                        version = 2;
-                        localPath = config.xdg.userDirs.videos;
-                        targetPath = "/Videos";
-                    }
-                ];
-            }
-        ];
-    };
-
-    syncCfgData = lib.generators.toINI {
-        listsAsDuplicateKeys = true;
-    } config;
 in
 {
     home.packages = with pkgs; [
@@ -74,5 +27,19 @@ in
         startInBackground = true;
     };
 
-    xdg.configFile."Nextcloud/nextcloud.cfg".text = syncCfgData;
+    xdg.configFile."Nextcloud/nextcloud.cfg".text = ''
+        [General]
+        launchOnSystemStartup=true
+
+        [Accounts]
+        0\version=1;
+        0\url=${nextcloudUrl};
+        0\authType=webflow;
+        0\webflow_user=${nextcloudUser};
+        0\dav_user=${nextcloudUser};
+
+        0\Folders\0\version=2;
+        0\Folders\0\localPath=${mountDir};
+        0\Folders\0\targetPath=/;
+    '';
 }
