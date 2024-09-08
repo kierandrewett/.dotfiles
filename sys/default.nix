@@ -48,7 +48,6 @@
 
             "sync/nc/url" = {};
             "sync/nc/username" = {};
-            "sync/nc/password" = {};
         };
 
         templates = {
