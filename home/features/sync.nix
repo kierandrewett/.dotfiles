@@ -9,105 +9,87 @@
 let
     homeDir = config.home.homeDirectory;
 
-    rclone-fs = name: remote: local: {
-        Unit = {
-            Description = "Mounts the remote ${name} FUSE filesystem.";
-            StartLimitIntervalSec = 1;
-            StartLimitBurst = 1000;
+    readSecretFile = file:
+        lib.optionalString (builtins.pathExists file) (builtins.readFile file);
+
+    mountDir = "${homeDir}/Nextcloud";
+
+    nextcloudUrl = readSecretFile "/run/secrets/sync/nc/url";
+    nextcloudUser = readSecretFile "/run/secrets/sync/nc/username";
+
+    config = {
+        General = {
+            launchOnSystemStartup = true;
         };
 
-        Install = {
-            WantedBy = [ "default.target" ];
-        };
-
-        Service = {
-            ExecStartPre = "${pkgs.writeShellScript "rclone-mount-${name}-pre" ''
-                ${pkgs.coreutils}/bin/cat > /tmp/rclone-${name}.conf << EOF
-                [${name}]
-                type = $(${pkgs.coreutils}/bin/cat ${config.sops.secrets."sync/${name}/type".path})
-                url = $(${pkgs.coreutils}/bin/cat ${config.sops.secrets."sync/${name}/url".path})
-                user = $(${pkgs.coreutils}/bin/cat ${config.sops.secrets."sync/${name}/username".path})
-                pass = $(${pkgs.coreutils}/bin/cat ${config.sops.secrets."sync/${name}/password".path})
-                vendor = $(${pkgs.coreutils}/bin/cat ${config.sops.secrets."sync/${name}/vendor".path})
-                EOF
-            ''}";
-
-            ExecStart = "${pkgs.writeShellScript "rclone-mount-${name}-start" ''
-                if [ ! -d "${local}" ]; then
-                    ${pkgs.coreutils}/bin/mkdir -p ${local} > /dev/null 2>&1
-                fi
-
-                /run/wrappers/bin/fusermount -u ${local} || true
-
-                ${pkgs.rclone}/bin/rclone mount \
-                    --config /tmp/rclone-${name}.conf \
-                    --dir-cache-time 168h \
-                    --vfs-cache-mode full \
-                    --vfs-cache-max-age 168h \
-                    --vfs-read-chunk-size 64M \
-                    --vfs-read-chunk-size-limit 2048M \
-                    --max-read-ahead 256M \
-                    --buffer-size 512M \
-                    --timeout 10m \
-                    --transfers 16 \
-                    --checkers 12 \
-                    --log-file ${homeDir}/.config/rclone/${name}.log \
-                    -vv \
-                    ${name}:${remote} ${local} &
-
-                RCLONE_PID=$!
-                wait $RCLONE_PID
-
-                exit 1
-            ''}";
-
-            ExecStop = "${pkgs.writeShellScript "rclone-mount-${name}-start" ''
-                /run/wrappers/bin/fusermount -u ${local}
-            ''}";
-
-            Environment = [
-                "PATH=/run/wrappers/bin/:$PATH"
-            ];
-
-            Restart = "on-failure";
-            RestartSec = "0.5s";
-        };
+        Accounts = [
+            {
+                version = 1;
+                url = nextcloudUrl;
+                authType = "webflow";
+                webflow_user = nextcloudUser;
+                dav_user = nextcloudUser;
+                Folders = [
+                    {
+                        version = 2;
+                        localPath = config.xdg.userDirs.documents;
+                        targetPath = "/Documents";
+                    }
+                    {
+                        version = 2;
+                        localPath = config.xdg.userDirs.download;
+                        targetPath = "/Downloads";
+                    }
+                    {
+                        version = 2;
+                        localPath = config.xdg.userDirs.music;
+                        targetPath = "/Music";
+                    }
+                    {
+                        version = 2;
+                        localPath = config.xdg.userDirs.pictures;
+                        targetPath = "/Pictures";
+                    }
+                    {
+                        version = 2;
+                        localPath = config.xdg.userDirs.videos;
+                        targetPath = "/Videos";
+                    }
+                ];
+            }
+        ];
     };
 
-    ncMountDir = "${homeDir}/Nextcloud";
+    serializeKeyValuePairs = content: builtins.concatStringsSep "\n" (lib.mapAttrsToList (key: value: ''
+        ${toString key}=${toString value}
+    '') content);
+
+    generateCfgSection = name: content: let
+        isList = builtins.isList content;
+        isAttrs = builtins.isAttrs content;
+    in
+    if isAttrs then ''
+        [${name}]
+        ${serializeKeyValuePairs content}
+    ''
+    else if isList then ''
+        [${name}]
+        ${builtins.concatStringsSep "\n\n" (builtins.imap (i: item: let
+        itemContent = serializeKeyValuePairs item;
+        in builtins.concatStringsSep "\n" (itemContent)) content)}
+    '' else "";
+
+    syncCfgData = builtins.concatStringsSep "\n\n" (lib.mapAttrsToList generateCfgSection config);
 in
 {
     home.packages = with pkgs; [
-        rclone
+        nextcloud-client
     ];
 
-    systemd.user.services.rclone-nc = rclone-fs "nc" "/" ncMountDir;
-
-    systemd.user.services.xdg-homedirs-link = {
-        Unit = {
-            Description = "Initialises the symlinks in the homedir.";
-            After = [ "rclone-nc.service" ];
-            StartLimitIntervalSec = 1;
-            StartLimitBurst = 1000;
-        };
-
-        Install = {
-            WantedBy = [ "default.target" ];
-        };
-
-        Service = {
-            ExecStart = "${pkgs.writeShellScript "xdg-homedirs-link" ''
-                if mountpoint -q ${ncMountDir}; then
-                    ln -s ${ncMountDir}/Documents ${homeDir}/Documents
-                else
-                    mkdir -p ${homeDir}/Documents
-                fi
-
-                exit 1
-            ''}";
-
-            Restart = "on-failure";
-            RestartSec = "1s";
-        };
+    services.nextcloud-client = {
+        enable = true;
+        startInBackground = true;
     };
+
+    xdg.configFile."Nextcloud/nextcloud.cfg".text = syncCfgData;
 }
