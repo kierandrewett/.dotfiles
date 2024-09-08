@@ -20,14 +20,14 @@ in
         shellAliases = {
             neofetch = "fastfetch"; # Old habits die hard
 
-            nix-pull = pkgs.runShellScript "nix-pull" ''
+            nix-pull = pkgs.writeShellScript "nix-pull" ''
                 set -ex
 
                 cd /etc/nixos
                 sudo git pull
                 sudo nixos-rebuild switch $@
             '';
-            nix-push = pkgs.runShellScript "nix-push" ''
+            nix-push = pkgs.writeShellScript "nix-push" ''
                 set -ex
 
                 cd /etc/nixos
