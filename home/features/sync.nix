@@ -12,7 +12,7 @@ let
     rclone-fs = name: remote: local: {
         Unit = {
             Description = "Mounts the remote ${name} FUSE filesystem.";
-            After = [ "graphical.target" ];
+            After = [ "graphical-session.target" ];
             StartLimitIntervalSec = 1;
             StartLimitBurst = 1000;
         };
@@ -87,7 +87,7 @@ in
     systemd.user.services.xdg-homedirs-link = {
         Unit = {
             Description = "Initialises the symlinks in the homedir.";
-            After = [ "rclone-nc.service" "graphical.target" ];
+            After = [ "rclone-nc.service" "graphical-session.target" ];
             StartLimitIntervalSec = 1;
             StartLimitBurst = 1000;
         };
