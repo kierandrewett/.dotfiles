@@ -19,7 +19,23 @@ in
         # Make sure they're compatible with all shells.
         shellAliases = {
             neofetch = "fastfetch"; # Old habits die hard
-            nix-sync = "(cd /etc/nixos && sudo git pull && sudo nixos-rebuild switch)";
+
+            nix-pull = pkgs.runShellScript "nix-pull" ''
+                set -ex
+
+                cd /etc/nixos
+                sudo git pull
+                sudo nixos-rebuild switch $@
+            '';
+            nix-push = pkgs.runShellScript "nix-push" ''
+                set -ex
+
+                cd /etc/nixos
+                sudo git commit
+                sudo nixos-rebuild switch $@
+                sudo push
+            '';
+            nix-sync = "nix-pull && nix-push";
         };
     };
 
