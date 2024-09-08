@@ -49,6 +49,7 @@ in
     home.activation.initNextcloudConfig = lib.mkAfter ''
         echo "Setting up nextcloud config..."
         mkdir -p "${ncConfigDir}"
+        rm "${ncConfigPath}"
         echo "${ncConfig}" > "${ncConfigPath}"
         chown ${config.home.username}:users "${ncConfigPath}"
         chmod 644 "${ncConfigPath}"
