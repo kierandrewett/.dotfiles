@@ -17,7 +17,7 @@ let
         };
 
         Install = {
-            WantedBy = [ "multi-user.target" ];
+            WantedBy = [ "default.target" ];
         };
 
         Service = {
@@ -92,7 +92,7 @@ in
         };
 
         Install = {
-            WantedBy = [ "multi-user.target" ];
+            WantedBy = [ "default.target" ];
         };
 
         Service = {
