@@ -3,5 +3,5 @@
     ...
 }:
 {
-    services.easyeffects.preset = lib.mkForce "oemboost";
+    services.easyeffects.preset = lib.mkForce "lenovo";
 }
