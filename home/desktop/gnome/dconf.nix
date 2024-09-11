@@ -19,6 +19,7 @@
                 "org.gnome.Console.desktop"
                 "obs-studio.desktop"
                 "org.gnome.Extensions.desktop"
+                "bitwarden.desktop"
                 "com.github.wwmm.easyeffects.desktop"
                 "org.gnome.tweaks.desktop"
                 "SpaceCadetPinball.desktop"
