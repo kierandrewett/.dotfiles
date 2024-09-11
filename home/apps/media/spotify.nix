@@ -1,7 +1,8 @@
 {
     inputs,
+    platform,
     ...
 }:
 {
-    home.packages = [inputs.nixpkgs-spotify.spotify];
+    home.packages = [inputs.nixpkgs-spotify.packages.${platform}.spotify];
 }
