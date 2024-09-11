@@ -45,8 +45,6 @@ let
         0\Folders\0\targetPath=/
         0\Folders\0\ignoreHiddenFiles=false
     '';
-
-    xdg.configFile."Nextcloud/sync-exclude.lst".source = ../config/nextcloud/sync-exclude.lst;
 in
 {
     home.packages = with pkgs; [
