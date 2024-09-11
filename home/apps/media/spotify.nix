@@ -4,5 +4,5 @@
     ...
 }:
 {
-    home.packages = [inputs.nixpkgs-spotify.packages.${platform}.spotify];
+    home.packages = [inputs.nixpkgs-spotify.legacyPackages.${platform}.spotify];
 }
