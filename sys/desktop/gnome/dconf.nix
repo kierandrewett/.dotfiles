@@ -33,7 +33,7 @@
                 };
 
                 "org/gnome/shell/keybindings" = {
-                    show-screenshot-ui = [ "<Alt>s" ];
+                    show-screenshot-ui = [ "<Alt>s" "PrtScrn" ];
                 };
 
                 "org/gnome/mutter" = {
@@ -51,6 +51,16 @@
 
                     monospace-font-name = "Geist Mono 10";
                     show-battery-percentage = true;
+                };
+
+                "org/gnome/desktop/peripherals/mouse" = {
+                    speed = -0.9;
+                };
+
+                "org/gnome/desktop/peripherals/touchpad" = {
+                    speed = -0.15;
+                    tap-to-click = true;
+                    natural-scroll = true;
                 };
             };
         }
