@@ -33,7 +33,7 @@
                 };
 
                 "org/gnome/shell/keybindings" = {
-                    show-screenshot-ui = [ "<Alt>s" "PrtScrn" ];
+                    show-screenshot-ui = [ "<Alt>s" "Print" ];
                 };
 
                 "org/gnome/mutter" = {
