@@ -15,6 +15,7 @@
                 "figma.desktop"
                 "code.desktop"
                 "steam.desktop"
+                "thunderbird.desktop"
                 "org.gnome.Console.desktop"
                 "obs-studio.desktop"
                 "org.gnome.Extensions.desktop"

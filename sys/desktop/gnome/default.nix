@@ -18,7 +18,6 @@
         geary # Email reader
         evince # Document viewer
         yelp # Help
-
     ]);
 
     environment.systemPackages = with pkgs; [
@@ -27,6 +26,9 @@
         gnome-tweaks
         gnome-backgrounds
         gnome-boxes
+
+        papers # GTK4 Document viewer
+        loupe # GTK4 Photo viewer
 
         adw-gtk3
 
