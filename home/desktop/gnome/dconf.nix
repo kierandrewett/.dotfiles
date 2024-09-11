@@ -12,7 +12,7 @@
                 "discord-canary.desktop"
                 "vesktop.desktop"
                 "spotify.desktop"
-                "figma.desktop"
+                "figma-linux.desktop"
                 "code.desktop"
                 "steam.desktop"
                 "thunderbird.desktop"
