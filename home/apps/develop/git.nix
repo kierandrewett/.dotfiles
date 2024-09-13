@@ -6,6 +6,8 @@ _:
         userEmail = "kieran@dothq.org";
 
         extraConfig = {
+            credential.helper = "store";
+
             safe.directory = [
                 "/etc/nixos"
             ];
