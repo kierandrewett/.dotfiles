@@ -21,6 +21,7 @@ in
             github.github-vscode-theme
             pkief.material-icon-theme
             miguelsolorio.fluent-icons
+            bbenoist.nix
         ];
 
         userSettings = {
