@@ -11,7 +11,7 @@
         lib.hm.dag.entryAfter [ "writeBoundary" ] ''
             rm -f ${config.xdg.configHome}/Code/User/settings.json
             cat >${config.xdg.configHome}/Code/User/settings.json <<EOL
-                ${config}
+            ${config}
             EOL
         '';
 }
