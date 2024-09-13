@@ -1,0 +1,11 @@
+{
+    "editor.fontFamily": "monospace",
+    "editor.inlineSuggest.enabled": true,
+    "editor.stickyScroll.enabled": true,
+    "telemetry.telemetryLevel": "off",
+    "window.titleBarStyle": "custom",
+    "window.zoomLevel": 1,
+    "workbench.colorTheme": "GitHub Dark Default",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.productIconTheme": "fluent-icons"
+}
