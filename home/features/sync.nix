@@ -34,18 +34,17 @@ let
         launchOnSystemStartup=true
 
         [Accounts]
-        0\version=1;
-        0\url=${ncUrl};
-        0\authType=webflow;
-        0\webflow_user=${ncUser};
-        0\dav_user=${ncUser};
+        0\version=1
+        0\url=${ncUrl}
+        0\authType=webflow
+        0\webflow_user=${ncUser}
+        0\dav_user=${ncUser}
 
-        0\Folders\0\version=2;
-        0\Folders\0\localPath=${mountDir};
-        0\Folders\0\targetPath=/;
+        0\Folders\0\version=2
+        0\Folders\0\localPath=${mountDir}
+        0\Folders\0\targetPath=/
+        0\Folders\0\ignoreHiddenFiles=false
     '';
-
-    xdg.configFile."Nextcloud/sync-exclude.lst".source = ../config/nextcloud/sync-exclude.lst;
 in
 {
     home.packages = with pkgs; [

@@ -11,5 +11,6 @@ _:
         ./shell.nix
         ./hardware.nix
         ./wine.nix
+        ./swap.nix
     ];
 }

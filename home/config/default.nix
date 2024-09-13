@@ -6,5 +6,6 @@
     imports = [
         ./easyeffects
         ./vscode
+        ./nextcloud
     ];
 }

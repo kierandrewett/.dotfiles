@@ -28,6 +28,9 @@
 
         # VSCode extensions
         vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+
+        # VSCode extensions
+        nixpkgs-spotify.url = "github:nixos/nixpkgs/1b7a6a6e57661d7d4e0775658930059b77ce94a4";
     };
 
     outputs =

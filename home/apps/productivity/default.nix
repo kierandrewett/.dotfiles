@@ -3,5 +3,9 @@
     ...
 }:
 {
-
+    home.packages = with pkgs; [
+        thunderbird
+        libreoffice
+        bitwarden-desktop
+    ];
 }
