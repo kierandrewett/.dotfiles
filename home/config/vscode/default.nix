@@ -1,4 +1,7 @@
-_:
+{
+    lib,
+    ...
+}:
 {
     home.activation.copyVSCodeConfig =
         let
